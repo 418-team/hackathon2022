@@ -6,10 +6,9 @@ services:
       context: ./backend
       dockerfile: local.Dockerfile
     environment:
-      DATABASE_URL: postgres://root:${POSTGRES_PASSWORD}@postgres/energy
+      DATABASE_URL: postgres://root:${POSTGRES_PASSWORD}@postgres/hackathon
     env_file:
       - .env
-    container_name: backend
     restart: unless-stopped
     depends_on:
       - postgres
@@ -20,20 +19,33 @@ services:
     networks:
       - internal
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: local.Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "14401:3000"
+    volumes:
+      - ./frontend:/app:rw
+    networks:
+      - internal
+
   postgres:
     image: postgres:12.2
-    container_name: postgres
     restart: always
     tty: true
     ports:
       - "127.0.0.1:14402:5432"
     environment:
       command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-      POSTGRES_DB: energy
+      POSTGRES_DB: hackathon
       POSTGRES_USER: root
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d energy -U root" ]
+      test: [ "CMD-SHELL", "pg_isready -d hackathon -U root" ]
       interval: 10s
       timeout: 5s
       retries: 5
