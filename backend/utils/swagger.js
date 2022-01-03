@@ -6,21 +6,16 @@ function swagger(fastify) {
         exposeRoute: true,
         swagger: {
             info: {
-                title: 'Energy Check API',
+                title: '418 Hackathon API',
                 version: process.env.VERSION || 'local'
             },
-            host: process.env.NODE_ENV === 'production' ? 'api.energy.418.one' : '94.41.65.26',
+            host: '127.0.0.1:14400',
             schemes: process.env.NODE_ENV === 'production' ? ['https'] : ['http'],
             consumes: ['application/json'],
             produces: ['application/json'],
             tags: [
                 {name: 'oauth', description: 'Методы для авторизации OAuth2'},
                 {name: 'users', description: 'Методы для работы с пользователями'},
-                {name: 'types', description: 'Методы для работы с типами юнитов'},
-                {name: 'tags', description: 'Методы для работы с тегами'},
-                {name: 'units', description: 'Методы для работы с юнитами (объектами)'},
-                {name: 'tasks', description: 'Методы для работы с заданиями'},
-                {name: 'checkups', description: 'Методы для работы с чекапами (проверки юнитов)'}
             ],
             securityDefinitions: {
                 OAuth2: {

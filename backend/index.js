@@ -1,3 +1,5 @@
+require('./utils/envValidate')
+
 const logger = require('./utils/logger');
 const fastify = require('fastify')({logger});
 const setupSwagger = require('./utils/swagger');

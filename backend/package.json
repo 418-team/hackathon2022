@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "migrate": "node_modules/.bin/node-pg-migrate",
+    "start": "NODE_ENV=LOCAL nodemon -L -e js,yaml,html,css index.js",
+    "prod": "NODE_ENV=PROD node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -16,6 +18,7 @@
     "fastify-formbody": "^5.2.0",
     "fastify-swagger": "^4.13.0",
     "jsonwebtoken": "^8.5.1",
+    "node-pg-migrate": "^6.2.0",
     "nodemon": "^2.0.15",
     "pg": "^8.7.1",
     "pino": "^6.13.4"
