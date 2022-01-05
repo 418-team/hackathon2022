@@ -22,7 +22,6 @@ const params = {
     schema: {
         tags: ['oauth'],
         summary: 'Создать пользователя',
-        security: [{OAuth2: ['users']}],
         body: {
             type: 'object',
             properties: {
