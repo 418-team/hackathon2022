@@ -1,5 +1,5 @@
 async function handler(req, res) {
-    const {rows} = await req.pg.query('SELECT user_id, title, description, date_start, date_end, location FROM events ORDER BY id DESC');
+    const {rows} = await req.pg.query('SELECT id, user_id, title, description, date_start, date_end, location FROM events ORDER BY id DESC');
     return Promise.resolve({statusCode: 200, rows});
 }
 
@@ -18,6 +18,7 @@ const params = {
                         additionalProperties: {
                             type: 'object',
                             properties: {
+                                id: {type: 'integer'},
                                 user_id: {type: 'integer'},
                                 title: {type: 'string'},
                                 description: {type: 'string'},

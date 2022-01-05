@@ -6,5 +6,6 @@ module.exports = (fastify, ctx, done) => {
     fastify.get('/users/list', listParams, listHandler);
     fastify.post('/users/create', createParams, createHandler);
     fastify.post('/users/me', meParams, meHandler);
+    fastify.register(require('./edit'));
     done();
 };
