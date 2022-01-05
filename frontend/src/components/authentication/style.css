@@ -1,0 +1,44 @@
+.auth_container {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.right-side {
+    padding-top: 30vh;
+    text-align: center;
+    background-color: #AFC0E0;
+    width: 50%;
+    height: 100%;
+}
+
+.auth_title {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #0077B6
+}
+
+input + input {
+    margin-top: 10px;
+}
+
+input + button {
+    margin-top: 10px;
+}
+
+.auth_container.input.secondary {
+    border: 2px solid #0077B6;
+    background-color: white;
+}
+
+.form {
+    margin: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth_container b {
+    margin: 5px 0;
+}

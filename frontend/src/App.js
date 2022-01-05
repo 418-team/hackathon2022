@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import authentication from "./components/authentication";
+
 
 function App() {
   return (
@@ -17,6 +19,15 @@ function App() {
         >
           Learn React
         </a>
+        <BrowserRouter>
+            <div className="App">
+                <Header />
+                <Routes>
+                    <Route path="/" element={<MainPage/>} exact />
+                    <Route path="/authentication" element={<authentication/>} exact />
+                </Routes>
+            </div>
+        </BrowserRouter>
       </header>
     </div>
   );
