@@ -72,6 +72,9 @@ mobile/.expo-shared
 
 pgdata
 
+frontend/package-lock.json
+backend/package-lock.json
+
 # Mobile
 /mobile/.expo
 /mobile/node_modules
