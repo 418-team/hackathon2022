@@ -6,6 +6,11 @@ export async function auth(username, password) {
         JSON.stringify({username, password})
     );
 }
+export async function registration(body) {
+    return await axios.post('oauth/registration',
+        JSON.stringify(body)
+    );
+}
 
 export async function refresh() {
     try {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { auth } from '../../utils/api';
+import { auth, registration } from '../../utils/api';
 import { useHistory } from 'react-router-dom';
 import Button from '../shared/Button/Button';
 
@@ -19,7 +19,8 @@ const Auth = () => {
     }
 
     const submit = () => {
-        auth(params.email, params.password)
+        if(isLogin) {
+            auth(params.email, params.password)
             .then(r => {
                 console.log('auth', r);
                 localStorage.setItem('refresh_token', r.data.refresh_token);
@@ -30,6 +31,12 @@ const Auth = () => {
                 console.error('auth', err);
                 setError(err.response?.data?.message || 'Произошла ошибка');
             });
+        }else { 
+            registration(params).then(() => {
+                setIsLogin(true)
+            }) 
+        }
+        
     };
 
     return (
@@ -37,7 +44,7 @@ const Auth = () => {
             <div className={"form"}>
                 <div className="auth_title">Вход в систему</div>
                 {error && <b>{error}</b>}
-                <Input type="text" mode={"secondary"} placeholder="Email" onChange={(e) => (handleChange("email", e.currentTarget.value))}/>
+                <Input type="email" mode={"secondary"} placeholder="Email" onChange={(e) => (handleChange("email", e.currentTarget.value))}/>
                 {!isLogin && (
                     <>
                         <Input type="text" value={params.first_name} mode={"secondary"} placeholder="Имя" onChange={(e) => (handleChange("first_name", e.currentTarget.value))}/>
