@@ -1,6 +1,6 @@
 const envList = {
     DATABASE_URL: {required: true},
-    JWT_SECRET: {required: true},
+    JWT_SECRET_KEY: {required: true},
     CRYPTO_SALT: {required: true},
     ADMIN_DEFAULT_EMAIL: {required: false, default: 'admin@418team.com'},
     ADMIN_DEFAULT_PASSWORD: {required: false, default: 'admin'},
