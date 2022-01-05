@@ -20,7 +20,7 @@ async function handler(req, res) {
 
 const params = {
     schema: {
-        tags: ['users'],
+        tags: ['oauth'],
         summary: 'Создать пользователя',
         security: [{OAuth2: ['users']}],
         body: {
