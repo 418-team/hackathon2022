@@ -10,13 +10,16 @@ import Enter from './image/Enter';
 
 const Auth = () => {
     const history = useHistory();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [params, setParams] = useState({})
     const [error, setError] = useState('');
     const [isLogin, setIsLogin] = useState(true);
 
+    const handleChange = (key, value) => {
+        setParams(prev => ({...prev, [key]: value}))
+    }
+
     const submit = () => {
-        auth(email, password)
+        auth(params.email, params.password)
             .then(r => {
                 console.log('auth', r);
                 localStorage.setItem('refresh_token', r.data.refresh_token);
@@ -34,12 +37,18 @@ const Auth = () => {
             <div className={"form"}>
                 <div className="auth_title">Вход в систему</div>
                 {error && <b>{error}</b>}
-                <Input type="text" mode={"secondary"} placeholder="Email" onChange={(e) => (setEmail(e.currentTarget.value))}/>
-                <Input type="password" mode={"secondary"} placeholder="Пароль" onChange={(e) => (setPassword(e.currentTarget.value))}/>
+                <Input type="text" mode={"secondary"} placeholder="Email" onChange={(e) => (handleChange("email", e.currentTarget.value))}/>
+                {!isLogin && (
+                    <>
+                        <Input type="text" value={params.first_name} mode={"secondary"} placeholder="Имя" onChange={(e) => (handleChange("first_name", e.currentTarget.value))}/>
+                        <Input type="text" value={params.last_name} mode={"secondary"} placeholder="Фамилия" onChange={(e) => (handleChange("last_name", e.currentTarget.value))}/>
+                        <Input type="text" value={params.patronymic} mode={"secondary"} placeholder="Отчество" onChange={(e) => (handleChange("patronymic", e.currentTarget.value))}/>
+                    </>
+                )}
+                <Input type="password" mode={"secondary"} placeholder="Пароль" onChange={(e) => (handleChange("password", e.currentTarget.value))}/>
                 <div className='button_container'>
-                <Button onClick={submit} mode={"primary"} label={"Войти"}></Button>
-                <Button onClick={submit} mode={"secondary"} label={"Регистрация"}></Button>
-    
+                    <Button onClick={submit} mode={"primary"} label={isLogin ? "Войти" : "Регистрация"}/>
+                    <Button onClick={() => setIsLogin(!isLogin)} mode={"secondary"} label={!isLogin ? "Войти" : "Регистрация"}/>
                 </div>
             </div>
         </div>
