@@ -38,8 +38,8 @@ fastify.get('/', function (request, reply) {
 });
 
 fastify.addHook('preHandler', AuthCheck);
-// fastify.register(require('./endpoints/oauth'));
-// fastify.register(require('./endpoints/users'));
+fastify.register(require('./endpoints/oauth'));
+fastify.register(require('./endpoints/users'));
 // fastify.register(require('./endpoints/types'));
 // fastify.register(require('./endpoints/tags'));
 // fastify.register(require('./endpoints/units'));
