@@ -1,11 +1,19 @@
-import React from "react";
-import "./style.css"
+import React, { useState } from 'react';
+import { auth } from '../../utils/api';
+import { useHistory } from 'react-router-dom';
+import Button from '../shared/Button/Button';
 
-const authentication = () => {
+
+import './styles.css'
+import Input from '../shared/Input/Input';
+import Enter from './image/Enter';
+
+const Auth = () => {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isLogin, setIsLogin] = useState(true);
 
     const submit = () => {
         auth(email, password)
@@ -23,18 +31,19 @@ const authentication = () => {
 
     return (
         <div className="auth_container">
-            <div className={"right-side"}>
-                <Enter/>
-            </div>
             <div className={"form"}>
                 <div className="auth_title">Вход в систему</div>
                 {error && <b>{error}</b>}
                 <Input type="text" mode={"secondary"} placeholder="Email" onChange={(e) => (setEmail(e.currentTarget.value))}/>
                 <Input type="password" mode={"secondary"} placeholder="Пароль" onChange={(e) => (setPassword(e.currentTarget.value))}/>
-                <Button onClick={submit} mode={"primary"} label={"Войти"}>Авторизоваться</Button>
+                <div className='button_container'>
+                <Button onClick={submit} mode={"primary"} label={"Войти"}></Button>
+                <Button onClick={submit} mode={"secondary"} label={"Регистрация"}></Button>
+    
+                </div>
             </div>
         </div>
     );
 };
 
-export default authentication;
+export default Auth;

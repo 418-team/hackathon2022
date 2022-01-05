@@ -19,19 +19,19 @@ services:
     networks:
       - internal
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: local.Dockerfile
-    restart: unless-stopped
-    depends_on:
-      - backend
-    ports:
-      - "14401:3000"
-    volumes:
-      - ./frontend:/app:rw
-    networks:
-      - internal
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: local.Dockerfile
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - backend
+  #   ports:
+  #     - "14401:3000"
+  #   volumes:
+  #     - ./frontend:/app:rw
+  #   networks:
+  #     - internal
 
   postgres:
     image: postgres:12.2
