@@ -1,8 +1,9 @@
 import {useState, useEffect} from "react";
-import { getUsers } from '../../utils/api';
+import { getUsers, deleteUser } from '../../utils/api';
 import "./user.css"
 import filter from "../../utils/search";
 import Input from "../shared/Input/Input";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const Users = () => {
     const [users, setUsers] = useState([])
@@ -14,6 +15,15 @@ const Users = () => {
         })
     }, [])
 
+    const deleteUserHandler = (id) => () => {
+        deleteUser(id).then(r =>
+            getUsers().then(({data}) => {
+                console.log(data)
+                setUsers(data.rows)
+            })
+        )
+    }
+
     return (
         <div className={"user_list"}>
             <h2>Пользователи</h2>
@@ -22,6 +32,7 @@ const Users = () => {
                 <div>Email</div>
                 <div>ФИО</div>
                 <div>Роли</div>
+                <div>Действия</div>
             </div>
             {filter(users, find).map(user => (
                 <div className={"user_grid table_data"}>
@@ -31,6 +42,7 @@ const Users = () => {
                         <span>{scopes} </span>
                     )))}
                     </div>
+                    <div onClick={deleteUserHandler(user.id)}><AiOutlineDelete color={"black"} size={20}/></div>
                 </div>
             ))}
         </div>

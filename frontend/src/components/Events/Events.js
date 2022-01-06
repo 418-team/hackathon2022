@@ -1,9 +1,10 @@
 import {useState, useEffect} from "react";
-import { getEvents } from '../../utils/api';
+import {deleteEvent, getEvents} from '../../utils/api';
 import moment from "moment";
 import "./event.css"
 import Input from "../shared/Input/Input";
 import filter from "../../utils/search";
+import {AiOutlineDelete} from "react-icons/ai";
 
 const Events = () => {
     const [find, setFind] = useState("")
@@ -18,6 +19,12 @@ const Events = () => {
         return `${moment(start).format(FORMAT)} - ${moment(end).format(FORMAT)}`
     }
 
+    const deleteEventHandler = (id) => () => {
+        deleteEvent(id).then(r =>
+            getEvents().then(({data}) => setEvents(data.rows))
+        )
+    }
+
     return (
         <div className={"user_list"}>
             <h2>События</h2>
@@ -27,6 +34,7 @@ const Events = () => {
                 <div>Описание</div>
                 <div>Создатель</div>
                 <div>Даты проведения</div>
+                <div>Действия</div>
             </div>
             {filter(events, find).map(event => (
                 <div className={"event_grid table_data"}>
@@ -34,6 +42,7 @@ const Events = () => {
                     <div>{event.description}</div>
                     <div>{event.last_name} {event.first_name} {event.patronymic || ""}</div>
                     <div>{formatDate(event.date_start, event.date_end)}</div>
+                    <div onClick={deleteEventHandler(event.id)}><AiOutlineDelete color={"black"} size={20}/></div>
                 </div>
             ))}
         </div>

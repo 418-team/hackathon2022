@@ -17,7 +17,7 @@ function AdminRouter() {
         <Router>
             <div>
                 <LeftMenu/>
-                <div style={{padding: '40px 40px 0px 230px', backgroundColor: "rgb(238, 240, 242)"}}>
+                <div style={{padding: '40px 40px 0px 230px'}}>
                     <Switch>
                         {/* <Route path={"/unit/:id"} component={Unit}/>
                         <Route path={"/type/:id"} component={Type}/>

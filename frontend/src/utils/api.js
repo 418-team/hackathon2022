@@ -52,6 +52,10 @@ export const getUnitsApi = async (id) => await axios.get("/units/list", {params:
 
 export const getUsers = async () => await axios.get("/users/list")
 
+export const deleteUser = async (id) => await axios.delete(`/users/delete/${id}`)
+
+export const deleteEvent = async (id) => await axios.delete(`/events/delete/${id}`)
+
 export const deleteCheckList = async (id, checklistId) => await axios.delete(`/types/${id}/checklist/${checklistId}`)
 
 export const putCheckList = async (id, checklistId, data) => await axios.put(`/types/${id}/checklist/${checklistId}`, data)
