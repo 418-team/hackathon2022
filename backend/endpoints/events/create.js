@@ -5,41 +5,49 @@ const SQL = `
 `;
 
 async function handler(req, res) {
-    const { uid: user_id } = req.jwt
-    const b = req.body
-    const result = (await req.pg.query(SQL, [user_id, b.title, b.description, b.date_start, b.date_end,
-        b.location])).rows[0];
-    console.log(result);
+  const { uid: user_id } = req.jwt;
+  const b = req.body;
+  const result = (
+    await req.pg.query(SQL, [
+      user_id,
+      b.title,
+      b.description,
+      b.date_start,
+      b.date_end,
+      b.location,
+    ])
+  ).rows[0];
+  console.log(result);
 
-    return Promise.resolve({statusCode: 200, id: result.id});
+  return Promise.resolve({ statusCode: 200, id: result.id });
 }
 
 const params = {
-    schema: {
-        tags: ['events'],
-        summary: 'Создать событие',
-        security: [{OAuth2: ['user']}],
-        body: {
-            type: 'object',
-            properties: {
-                user_id: {type: "integer"},
-                title: {type: "string"},
-                description: {type: "string"},
-                date_start: {type: "string"},
-                date_end: {type: "string"},
-                location: {type: "string"}
-            }
+  schema: {
+    tags: ["events"],
+    summary: "Создать событие",
+    security: [{ OAuth2: ["user"] }],
+    body: {
+      type: "object",
+      properties: {
+        user_id: { type: "integer" },
+        title: { type: "string" },
+        description: { type: "string" },
+        date_start: { type: "string" },
+        date_end: { type: "string" },
+        location: { type: "string" },
+      },
+    },
+    response: {
+      200: {
+        type: "object",
+        properties: {
+          statusCode: { type: "integer" },
+          id: { type: "integer" },
         },
-        response: {
-            200: {
-                type: 'object',
-                properties: {
-                    statusCode: {type: 'integer'},
-                    id: {type: 'integer'}
-                }
-            }
-        }
-    }
+      },
+    },
+  },
 };
 
 module.exports = [params, handler];

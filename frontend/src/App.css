@@ -14,3 +14,12 @@ a {
   font-weight: 400;
   text-decoration: none;
 }
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-form {
+  margin-top: 10px;
+}

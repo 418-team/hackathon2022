@@ -1,3 +1,3 @@
-import LeftMenu from './LeftMenu';
+import LeftMenu from "./LeftMenu";
 
-export default LeftMenu
+export default LeftMenu;

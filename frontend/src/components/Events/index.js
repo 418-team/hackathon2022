@@ -1,2 +1,3 @@
 import Events from "./Events";
-export { Events }
+
+export { Events };
