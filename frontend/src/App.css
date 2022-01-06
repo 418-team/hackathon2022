@@ -16,10 +16,19 @@ a {
 }
 
 .add-form {
-  display: flex;
-  flex-direction: column;
+  margin: 10px 0;
 }
 
-.add-form {
-  margin-top: 10px;
+.add-form > div {
+  width: fit-content;
+  background: #e1e1e1;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.add-form div input:not([type="checkbox"]), textarea {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
 }

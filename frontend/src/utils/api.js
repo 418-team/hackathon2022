@@ -18,6 +18,11 @@ export async function getEvents() {
   return result;
 }
 
+export async function createEvent(body) {
+  const result = await axios.post("events/create", JSON.stringify(body));
+  return result;
+}
+
 export async function oauthRefresh() {
   const result = await axios.post(
     "oauth/refresh",
@@ -74,6 +79,11 @@ export const getUnitsApi = async (id) => {
 
 export const getUsers = async () => {
   const result = await axios.get("/users/list");
+  return result;
+};
+
+export const createUsers = async (body) => {
+  const result = await axios.post("/users/create", JSON.stringify(body));
   return result;
 };
 

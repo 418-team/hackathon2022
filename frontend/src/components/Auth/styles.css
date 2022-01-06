@@ -23,9 +23,6 @@ input + input {
     margin-top: 10px;
 }
 
-input + button {
-    margin-top: 10px;
-}
 
 .auth_container.input.secondary {
     border: 2px solid #0077B6;
@@ -42,11 +39,10 @@ input + button {
 .auth_container b {
     margin: 5px 0;
 }
-.button_container{
+.button_container {
     display: flex;
     margin-top: 10px;
 }
-.button_container button{
+.button_container button:not(:last-child) {
     margin-right: 10px;
-    
 }

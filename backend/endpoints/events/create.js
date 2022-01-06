@@ -29,7 +29,6 @@ const params = {
     body: {
       type: "object",
       properties: {
-        user_id: { type: "integer" },
         title: { type: "string" },
         description: { type: "string" },
         date_start: { type: "string" },

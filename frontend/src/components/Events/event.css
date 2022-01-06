@@ -1,9 +1,14 @@
 .event_grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 10px;
     grid-row-gap: 0px;
     border-bottom: 1px solid #e1e1e1;
     padding: 10px 0
 }
+
+.button_container {
+    justify-content: right;
+}
+

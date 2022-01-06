@@ -8,18 +8,15 @@
 
 .button.primary {
     background-color: #0077B6;
-    border: 2px solid #0077B6;
     color: white
 }
 
 .button.secondary {
-    border: 2px solid #0077B6;
     background-color: white;
 }
 
 .button.primary:hover {
     background-color: #0d7fb9;
-    border: 2px solid #0d7fb9;
     color: white
 }
 
@@ -29,11 +26,9 @@
 
 .button.primary.disabled {
     background-color: rgba(0, 119, 182, 0.4);
-    border: 2px solid rgba(0, 119, 182, 0.4);
     color: white
 }
 
 .button.secondary.disabled {
-    border: 2px solid rgba(0, 119, 182, 0.4);
     color: black;
 }
