@@ -1,14 +1,14 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ruLocale from "moment/locale/ru";
-import moment from "moment";
-import axios from "axios";
-
 import "./App.css";
 
-import { AdminPrivateRoute, PrivateRoute } from "./components/PrivateRoute";
+import axios from "axios";
+import moment from "moment";
+import ruLocale from "moment/locale/ru";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import AdminRouter from "./components/AdminRouter";
-import CRouter from "./components/Router";
 import Auth from "./components/Auth";
+import { AdminPrivateRoute, PrivateRoute } from "./components/PrivateRoute";
+import CRouter from "./components/Router";
 import { refresh } from "./utils/api";
 
 function App() {

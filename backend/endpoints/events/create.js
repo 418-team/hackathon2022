@@ -4,7 +4,7 @@ const SQL = `
     RETURNING id
 `;
 
-async function handler(req, res) {
+async function handler(req) {
   const { uid: user_id } = req.jwt;
   const b = req.body;
   const result = (
@@ -17,7 +17,6 @@ async function handler(req, res) {
       b.location,
     ])
   ).rows[0];
-  console.log(result);
 
   return Promise.resolve({ statusCode: 200, id: result.id });
 }

@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
+import "./left_menu.css";
+
 import {
   IoCalendarSharp,
-  IoPersonSharp,
-  IoPeople,
   IoExit,
+  IoPeople,
+  IoPersonSharp,
 } from "react-icons/io5";
-import "./left_menu.css";
+import { Link } from "react-router-dom";
 
 const iconSize = 20;
 

@@ -1,4 +1,4 @@
-async function handler(req, res) {
+async function handler(req) {
   const { rows } = await req.pg.query(
     "SELECT id, email, first_name, last_name, patronymic, scopes FROM users ORDER BY id DESC"
   );

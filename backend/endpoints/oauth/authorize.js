@@ -6,15 +6,13 @@ const INCORRECT_CREDS_ERROR = {
   error: "incorrect_login_or_password",
 };
 
-async function handler(req, res) {
+async function handler(req) {
   const user = (
     await req.pg.query(
       "SELECT id, first_name, last_name, patronymic, email, scopes FROM users WHERE email = $1 AND password = $2",
       [req.body.username, createHash(req.body.password)]
     )
   ).rows[0];
-
-  console.log(user);
 
   if (!user) await Promise.reject(INCORRECT_CREDS_ERROR);
 

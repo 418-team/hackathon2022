@@ -2,7 +2,7 @@ const SQL = `
     DELETE FROM users WHERE id=$1 RETURNING id
 `;
 
-async function handler(req, res) {
+async function handler(req) {
   const p = req.params;
 
   const user = (await req.pg.query("SELECT id FROM users WHERE id=$1", [p.id]))
@@ -15,7 +15,6 @@ async function handler(req, res) {
     });
 
   const result = (await req.pg.query(SQL, [p.id])).rows[0];
-  console.log(result);
 
   return Promise.resolve({ statusCode: 200, id: result.id });
 }

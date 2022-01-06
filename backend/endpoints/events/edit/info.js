@@ -4,7 +4,7 @@ const ERROR_404 = {
   message: "Событие с таким ID не найден",
 };
 
-async function handler(req, res) {
+async function handler(req) {
   const data = (
     await req.pg.query("SELECT * FROM events WHERE id=$1", [req.params.id])
   ).rows[0];

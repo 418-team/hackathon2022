@@ -1,9 +1,10 @@
+import "./styles.css";
+
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+
 import { auth, registration } from "../../utils/api";
 import Button from "../shared/Button/Button";
-
-import "./styles.css";
 import Input from "../shared/Input/Input";
 
 function Auth() {

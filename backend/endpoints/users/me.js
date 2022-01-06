@@ -1,4 +1,4 @@
-async function handler(req, res) {
+async function handler(req) {
   const data = (
     await req.pg.query(
       "SELECT id, email, first_name, last_name, patronymic, specialization, scopes FROM users WHERE id=$1",

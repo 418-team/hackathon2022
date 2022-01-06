@@ -1,10 +1,11 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import { Events } from "../Events";
 import LeftMenu from "../LeftMenu";
 // import Home from '../Home';
 // import Unit from "../Unit"
 // import Type from "../Type/Type"
 import { Users } from "../Users";
-import { Events } from "../Events";
 // import Table from "../Table"/
 
 function AdminRouter() {

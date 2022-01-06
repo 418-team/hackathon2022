@@ -10,7 +10,7 @@ async function handler(req, res) {
   const jwt = isCorrectJWT(req.body.refresh_token);
   if (!jwt || !jwt.refresh) {
     res.status(401).send(INCORRECT_SESSION_ERROR);
-    return;
+    return null;
   }
 
   const user = (
@@ -20,12 +20,10 @@ async function handler(req, res) {
     )
   ).rows[0];
 
-  console.log(user);
-
   if (!user) await Promise.reject(INCORRECT_SESSION_ERROR);
 
   const { accessToken, refreshToken } = createSession(user);
-  return Promise.resolve({
+  const result = Promise.resolve({
     statusCode: 200,
     access_token: accessToken,
     refresh_token: refreshToken,
@@ -33,6 +31,7 @@ async function handler(req, res) {
     expires_in: 300,
     user,
   });
+  return result;
 }
 
 const params = {

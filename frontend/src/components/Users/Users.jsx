@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
-import { AiOutlineDelete } from "react-icons/ai";
-import { getUsers, deleteUser } from "../../utils/api";
 import "./user.css";
+
+import { useEffect, useState } from "react";
+import { AiOutlineDelete } from "react-icons/ai";
+
+import { deleteUser, getUsers } from "../../utils/api";
 import filter from "../../utils/search";
 import Input from "../shared/Input/Input";
 

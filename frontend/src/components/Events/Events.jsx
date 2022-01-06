@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
-import moment from "moment";
-import { AiOutlineDelete } from "react-icons/ai";
-import { deleteEvent, getEvents } from "../../utils/api";
 import "./event.css";
-import Input from "../shared/Input/Input";
+
+import moment from "moment";
+import { useEffect, useState } from "react";
+import { AiOutlineDelete } from "react-icons/ai";
+
+import { deleteEvent, getEvents } from "../../utils/api";
 import filter from "../../utils/search";
 import Button from "../shared/Button/Button";
+import Input from "../shared/Input/Input";
 import Textarea from "../shared/Textarea/Textarea";
 
 function Events() {

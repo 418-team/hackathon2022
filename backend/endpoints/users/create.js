@@ -6,7 +6,7 @@ const SQL = `
     RETURNING id
 `;
 
-async function handler(req, res) {
+async function handler(req) {
   const b = req.body;
 
   const user = (
@@ -29,7 +29,6 @@ async function handler(req, res) {
       b.is_admin ? ["user", "admin"] : ["user"],
     ])
   ).rows[0];
-  console.log(result);
 
   return Promise.resolve({ statusCode: 200, id: result.id });
 }

@@ -1,4 +1,4 @@
-async function handler(req, res) {
+async function handler(req) {
   const { rows } = await req.pg.query(
     "SELECT e.id, e.user_id, u.first_name, u.last_name, u.patronymic, e.title, e.description, e.date_start, e.date_end, e.location FROM events e\n" +
       "JOIN users u on u.id = e.user_id\n" +

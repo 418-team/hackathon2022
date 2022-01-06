@@ -11,7 +11,7 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: "module",
   },
-  plugins: ["prettier", "react"],
+  plugins: ["prettier", "react", "unused-imports", "simple-import-sort"],
   rules: {
     "jsx-a11y/no-autofocus": [1, { ignoreNonDOM: true }],
     "prettier/prettier": "error",
@@ -20,6 +20,11 @@ module.exports = {
     "react/display-name": "off",
     "react/jsx-uses-vars": 1,
     "react/prop-types": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
     "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",
     "prefer-promise-reject-errors": "off",
@@ -27,6 +32,17 @@ module.exports = {
     "react/jsx-props-no-spreading": "off",
     "import/no-cycle": "off", // should be enabled
     camelcase: "off",
+    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        varsIgnorePattern: "^_",
+        args: "after-used",
+        argsIgnorePattern: "^_",
+      },
+    ],
     "import/no-extraneous-dependencies": 0,
     "react/require-default-props": [0, { forbidDefaultForRequired: true }],
     "no-console": [1, { allow: ["warn", "error"] }],

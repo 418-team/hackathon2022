@@ -1,4 +1,4 @@
-import { Route, Redirect } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 export function AdminPrivateRoute({ component: Component, ...rest }) {
   return (

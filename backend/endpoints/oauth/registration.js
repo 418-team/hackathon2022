@@ -6,7 +6,7 @@ const SQL = `
     RETURNING id
 `;
 
-async function handler(req, res) {
+async function handler(req) {
   const b = req.body;
 
   const user = (
