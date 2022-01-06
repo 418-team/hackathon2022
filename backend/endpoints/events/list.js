@@ -1,5 +1,7 @@
 async function handler(req, res) {
-    const {rows} = await req.pg.query('SELECT id, user_id, title, description, date_start, date_end, location FROM events ORDER BY id DESC');
+    const {rows} = await req.pg.query('SELECT e.id, e.user_id, u.first_name, u.last_name, u.patronymic, e.title, e.description, e.date_start, e.date_end, e.location FROM events e\n' +
+        'JOIN users u on u.id = e.user_id\n' +
+        'ORDER BY id DESC');
     return Promise.resolve({statusCode: 200, rows});
 }
 

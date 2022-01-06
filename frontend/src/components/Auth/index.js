@@ -6,7 +6,6 @@ import Button from '../shared/Button/Button';
 
 import './styles.css'
 import Input from '../shared/Input/Input';
-import Enter from './image/Enter';
 
 const Auth = () => {
     const history = useHistory();
@@ -24,6 +23,7 @@ const Auth = () => {
             .then(r => {
                 console.log('auth', r);
                 localStorage.setItem('refresh_token', r.data.refresh_token);
+                localStorage.setItem('is_admin', r.data.user.scopes.includes("admin").toString())
                 localStorage.setItem('access_token', r.data.access_token);
                 history.push('/');
             })

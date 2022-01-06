@@ -9,8 +9,9 @@ import axios from 'axios';
 
 import './App.css';
 
-import PrivateRoute from './components/PrivateRoute';
+import { AdminPrivateRoute, PrivateRoute } from './components/PrivateRoute';
 import AdminRouter from './components/AdminRouter';
+import CRouter from './components/Router';
 import Auth from './components/Auth';
 import { refresh } from './utils/api';
 
@@ -50,13 +51,16 @@ function App() {
       }
   );
   moment.updateLocale('ru', [ruLocale]);
-
+    console.log(localStorage.is_admin)
   return (
       <div className="App">
           <Router>
               <Switch>
                   <Route exact path={'/login'} component={Auth}/>
-                  <PrivateRoute path={'/'} component={AdminRouter}/>
+                  {localStorage.is_admin === "true"
+                      ? <AdminPrivateRoute path={'/'} component={AdminRouter}/>
+                      : <PrivateRoute path={'/'} component={CRouter}/>
+                  }
               </Switch>
           </Router>
       </div>

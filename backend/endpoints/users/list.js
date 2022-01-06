@@ -1,5 +1,5 @@
 async function handler(req, res) {
-    const {rows} = await req.pg.query('SELECT id, email, first_name, last_name, patronymic, specialization, scopes FROM users ORDER BY id DESC');
+    const {rows} = await req.pg.query('SELECT id, email, first_name, last_name, patronymic, scopes FROM users ORDER BY id DESC');
     return Promise.resolve({statusCode: 200, rows});
 }
 
@@ -23,7 +23,6 @@ const params = {
                                 first_name: {type: 'string'},
                                 last_name: {type: 'string'},
                                 patronymic: {type: 'string'},
-                                specialization: {type: 'string'},
                                 scopes: {type: 'array'}
                             }
                         }

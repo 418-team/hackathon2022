@@ -12,11 +12,16 @@ export async function registration(body) {
     );
 }
 
+export async function getEvents() {
+    return await axios.get("events/list")
+}
+
 export async function refresh() {
     try {
         const {data} = await oauthRefresh();
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('refresh_token', data.refresh_token);
+        localStorage.setItem('is_admin', data.user.scopes.includes("admin").toString())
         axios.defaults.headers.Authorization = 'Bearer ' + data.access_token;
         console.info('[OAuth] Token has been refreshed');
         if (data.need_update) window.location.pathname = '/login';
@@ -43,17 +48,9 @@ export const getUnit = async (id) => await axios.get(`/units/${id}`)
 
 export const getType = async (id) => await axios.get(`/types/${id}`)
 
-export const postUnit = async (data) => await axios.post("/units/create", data)
-
 export const getUnitsApi = async (id) => await axios.get("/units/list", {params: {type_id: id}})
 
 export const getUsers = async () => await axios.get("/users/list")
-
-export const getTasks = async (status) => await axios.get("/tasks/list", {params: {status}})
-
-export const getCheckList = async (id) => await axios.get(`/types/${id}/checklist`)
-
-export const postCheckList = async (data, id) => await axios.post(`/types/${id}/checklist`, data)
 
 export const deleteCheckList = async (id, checklistId) => await axios.delete(`/types/${id}/checklist/${checklistId}`)
 

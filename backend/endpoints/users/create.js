@@ -2,7 +2,7 @@ const {createHash} = require('../../utils/security');
 
 const SQL = `
     INSERT INTO users (email, first_name, last_name, patronymic, password, scopes)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING id
 `;
 
@@ -13,7 +13,7 @@ async function handler(req, res) {
     if (user) return Promise.reject({statusCode: 400, error: 'already_exists', message: 'Пользователь уже существует'});
 
     const result = (await req.pg.query(SQL, [b.email, b.first_name, b.last_name, b.patronymic,
-        b.phone, createHash(b.password), b.specialization, b.is_admin ? ['user', 'admin'] : ['user']])).rows[0];
+        createHash(b.password), b.is_admin ? ['user', 'admin'] : ['user']])).rows[0];
     console.log(result);
 
     return Promise.resolve({statusCode: 200, id: result.id});

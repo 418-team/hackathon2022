@@ -8,8 +8,7 @@ import LeftMenu from '../LeftMenu';
 // import Home from '../Home';
 // import Unit from "../Unit"
 // import Type from "../Type/Type"
-import {Users} from '../Users';
-import {Events} from "../Events"
+// import Users from '../Users';
 // import Table from "../Table"/
 
 
@@ -17,12 +16,14 @@ function AdminRouter() {
     return (
         <Router>
             <div>
-                <LeftMenu isAdmin />
-                <div style={{padding: '40px 40px 0px 230px', }}>
+                <LeftMenu/>
+                <div style={{padding: '40px 40px 0px 230px', backgroundColor: "rgb(238, 240, 242)"}}>
                     <Switch>
+                        {/* <Route path={"/unit/:id"} component={Unit}/>
+                        <Route path={"/type/:id"} component={Type}/>
                         <Route path={"/users"} component={Users}/>
-                        <Route path={"/events"} component={Events}/>
-                        {/*<Route path={"/"} component={Home}/>*/}
+                        <Route path={"/table"} component={Table}/>
+                        <Route path={"/"} component={Home}/> */}
                     </Switch>
                 </div>
             </div>
