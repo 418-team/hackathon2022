@@ -47,6 +47,8 @@ fastify.addHook("preHandler", AuthCheck);
 fastify.register(require("./endpoints/oauth"));
 fastify.register(require("./endpoints/users"));
 fastify.register(require("./endpoints/events"));
+fastify.register(require("./endpoints/teams"));
+fastify.register(require("./endpoints/invites"));
 // fastify.register(require('./endpoints/tags'));
 // fastify.register(require('./endpoints/units'));
 // fastify.register(require('./endpoints/tasks'));

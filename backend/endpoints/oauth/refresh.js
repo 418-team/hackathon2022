@@ -15,7 +15,7 @@ async function handler(req, res) {
 
   const user = (
     await req.pg.query(
-      "SELECT id, first_name, last_name, patronymic, email, phone, avatar_url, scopes FROM users WHERE id = $1",
+      "SELECT id, first_name, last_name, patronymic, email, scopes FROM users WHERE id = $1",
       [jwt.uid]
     )
   ).rows[0];
@@ -62,8 +62,6 @@ const params = {
               last_name: { type: "string" },
               patronymic: { type: "string" },
               email: { type: "string" },
-              phone: { type: "string" },
-              avatar_url: { type: "string" },
               scopes: { type: "array" },
             },
           },

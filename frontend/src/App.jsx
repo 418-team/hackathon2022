@@ -3,7 +3,12 @@ import "./App.css";
 import axios from "axios";
 import moment from "moment";
 import ruLocale from "moment/locale/ru";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 
 import AdminRouter from "./components/AdminRouter";
 import Auth from "./components/Auth";
@@ -61,15 +66,23 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/login" component={Auth} />
-          {localStorage.is_admin === "true" ? (
-            <AdminPrivateRoute path="/" component={AdminRouter} />
-          ) : (
-            <PrivateRoute path="/" component={CRouter} />
-          )}
+          <SwitchRouter />
         </Switch>
       </Router>
     </div>
   );
+}
+
+function SwitchRouter() {
+  console.error(localStorage.access_token && localStorage.refresh_token);
+  if (localStorage.access_token && localStorage.refresh_token) {
+    return localStorage.is_admin === "true" ? (
+      <AdminPrivateRoute path="/" component={AdminRouter} />
+    ) : (
+      <PrivateRoute path="/" component={CRouter} />
+    );
+  }
+  return <Redirect to="/login" />;
 }
 
 export default App;

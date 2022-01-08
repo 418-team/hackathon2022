@@ -19,7 +19,15 @@ export async function getEvents() {
 }
 
 export async function createEvent(body) {
-  const result = await axios.post("events/create", JSON.stringify(body));
+  const data = { ...body };
+  data.date_start = new Date(body.date_start).toISOString();
+  data.date_end = new Date(body.date_end).toISOString();
+  const result = await axios.post("events/create", JSON.stringify(data));
+  return result;
+}
+
+export async function createTeam(body) {
+  const result = await axios.post("teams/create", JSON.stringify(body));
   return result;
 }
 
@@ -52,18 +60,8 @@ export const refresh = async () => {
   }
 };
 
-export const getTags = async () => {
-  const result = await axios.get("/tags/list");
-  return result;
-};
-
-export const postTags = async (title) => {
-  const result = await axios.post("/tags/create", { title });
-  return result;
-};
-
-export const getUnit = async (id) => {
-  const result = await axios.get(`/units/${id}`);
+export const getMyTeam = async () => {
+  const result = await axios.get(`/teams/my`);
   return result;
 };
 

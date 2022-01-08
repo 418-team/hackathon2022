@@ -8,10 +8,10 @@ import Button from "../shared/Button/Button";
 import Input from "../shared/Input/Input";
 
 function Auth() {
-  const history = useHistory();
   const [params, setParams] = useState({});
   const [error, setError] = useState("");
   const [isLogin, setIsLogin] = useState(true);
+  const history = useHistory();
 
   const handleChange = (key, value) => {
     setParams((prev) => ({ ...prev, [key]: value }));
@@ -22,11 +22,11 @@ function Auth() {
       auth(params.email, params.password)
         .then((r) => {
           localStorage.setItem("refresh_token", r.data.refresh_token);
+          localStorage.setItem("access_token", r.data.access_token);
           localStorage.setItem(
             "is_admin",
             r.data.user.scopes.includes("admin").toString()
           );
-          localStorage.setItem("access_token", r.data.access_token);
           history.push("/");
         })
         .catch((err) => {

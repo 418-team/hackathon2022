@@ -17,13 +17,14 @@ export function PrivateRoute({ component: Component, ...rest }) {
   return (
     <Route
       {...rest}
-      render={(props) =>
-        localStorage.access_token && localStorage.refresh_token ? (
+      render={(props) => {
+        console.error(localStorage.access_token && localStorage.refresh_token);
+        return localStorage.access_token && localStorage.refresh_token ? (
           <Component {...props} />
         ) : (
           <Redirect to="/login" />
-        )
-      }
+        );
+      }}
     />
   );
 }
