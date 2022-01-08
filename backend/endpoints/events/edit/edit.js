@@ -43,8 +43,8 @@ const params = {
       properties: {
         title: { type: "string" },
         description: { type: "string" },
-        date_start: { type: "string" },
-        date_end: { type: "string" },
+        date_start: { type: "string", default: '2021-01-20T09:23:01.323Z' },
+        date_end: { type: "string", default: '2022-02-20T09:23:01.323Z' },
         location: { type: "string" },
       },
     },
