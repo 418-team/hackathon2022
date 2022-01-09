@@ -65,6 +65,26 @@ export const getMyTeam = async () => {
   return result;
 };
 
+export const getSkillsList = async () => {
+  const result = await axios.get(`/skills/list`);
+  return result;
+};
+
+export const rejectInvite = async (id) => {
+  const result = await axios.delete(`/invites/reject/${id}`);
+  return result;
+};
+
+export const acceptInvite = async (id) => {
+  const result = await axios.post(`/invites/accept/${id}`);
+  return result;
+};
+
+export const listForInvite = async () => {
+  const result = await axios.get(`/users/ulist`);
+  return result;
+};
+
 export const getType = async (id) => {
   const result = await axios.get(`/types/${id}`);
   return result;

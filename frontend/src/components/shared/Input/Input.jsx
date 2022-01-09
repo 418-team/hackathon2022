@@ -1,7 +1,7 @@
 import "./input.css";
 
 function Input(props) {
-  let clsName = "input ";
+  let clsName = `input ${props.className}`;
   if (props.mode) {
     clsName += props.mode;
   }

@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import LeftMenu from "../LeftMenu";
+import { Cabinet } from "../UsersCabinet";
 import { Events } from "../UsersEvents";
-import { Team } from "../UsersTeam";
+import { Users } from "../UsersUsers";
 
 function AdminRouter() {
   return (
@@ -11,7 +12,8 @@ function AdminRouter() {
         <LeftMenu />
         <div style={{ padding: "40px 40px 0px 230px" }}>
           <Switch>
-            <Route path="/team" component={Team} />
+            <Route path="/profile" component={Cabinet} />
+            <Route path="/users" component={Users} />
             <Route path="/" component={Events} />
           </Switch>
         </div>

@@ -1,0 +1,90 @@
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.team_view {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-row-gap: 0px;
+}
+
+h2:not(.header), h3 {
+    color: #494949;
+}
+
+
+.invite_view {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 0.4fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+}
+
+.participants {
+    max-width: 450px;
+}
+
+.header button {
+    margin-left: 20px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+    vertical-align: text-bottom;
+}
+
+
+.skills_list {
+    box-shadow: 0 0 10px 3px rgba(0,0,0, .1);
+    width: 250px;
+    border-radius: 8px;
+    position: absolute;
+    background-color: white;
+    z-index: 10;
+    top: 50px;
+    right: -30px;
+}
+
+.skill_item:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.skill_item:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+
+.skill_item {
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(222, 222, 222);
+}
+
+.skill_item:hover {
+    background-color: rgba(0, 0, 0, 0.10)
+}
+
+.title div {
+    display: grid;
+    grid-template-columns: 0.4fr 3fr;
+    align-items: baseline;
+}
+
+.title div span {
+    font-size: 14px;
+    color: #494949;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 300;
+    color: #3b3b3b;
+}

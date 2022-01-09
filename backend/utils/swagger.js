@@ -17,6 +17,7 @@ function swagger(fastify) {
         { name: "teams", description: "Методы для работы с командами" },
         { name: "invites", description: "Методы для работы с приглашениями" },
         { name: "events", description: "Методы для работы с событиями" },
+        { name: "skills", description: "Методы для работы со скиллами" },
         { name: "users", description: "Методы для работы с пользователями" },
         { name: "oauth", description: "Методы для авторизации OAuth2" },
       ],

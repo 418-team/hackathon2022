@@ -3,7 +3,8 @@
 exports.shorthands = undefined;
 
 exports.up = (pgm) => {
-  pgm.createTable("events", {
+  pgm.dropTable("users_skills");
+  pgm.createTable("users_skills", {
     id: "id",
     user_id: {
       type: "integer",
@@ -11,17 +12,20 @@ exports.up = (pgm) => {
       onDelete: "cascade",
       notNull: true,
     },
-    title: { type: "varchar(64)", notNull: true },
-    description: { type: "text", notNull: true },
-    date_start: { type: "timestamptz", notNull: true },
-    date_end: { type: "timestamptz", notNull: true },
-    location: { type: "string", notNull: true, default: "Россия" },
+    skill_id: {
+      type: "integer",
+      references: '"skills"',
+      onDelete: "cascade",
+      notNull: true,
+    },
     created_at: {
       type: "timestamp",
       notNull: true,
       default: pgm.func("current_timestamp"),
     },
   });
+  pgm.createIndex("users_skills", "user_id");
+  pgm.createIndex("users_skills", "skill_id");
 };
 
 exports.down = (pgm) => {};

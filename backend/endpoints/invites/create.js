@@ -1,6 +1,6 @@
 const SQL = `
   INSERT INTO invites (user_id, message, team_id)
-  select $1, $2, t.id from teams t inner join participants p on p.id = $3
+  select $1, $2, t.id from teams t inner join participants p on p.user_id = $3
   where p.team_id = t.id
   RETURNING id
 `;
@@ -11,6 +11,8 @@ async function handler(req) {
 
   const result = (await req.pg.query(SQL, [b.user_id, b.message, user_id]))
     .rows[0];
+
+  console.error(result);
 
   return Promise.resolve({ statusCode: 200, id: result.id });
 }

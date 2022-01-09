@@ -12,7 +12,6 @@ import Input from "../shared/Input/Input";
 function Events() {
   const [find, setFind] = useState("");
   const [events, setEvents] = useState([]);
-  const [addView, setAddView] = useState(false);
   useEffect(() => {
     getEvents().then(({ data }) => setEvents(data.rows));
   }, []);
@@ -21,9 +20,6 @@ function Events() {
 
   const cutDescription = (description) =>
     description.length > 200 ? `${description.slice(0, 210)}...` : description;
-
-  const getEventList = () =>
-    getEvents().then(({ data }) => setEvents(data.rows));
 
   const formatDate = (start) => `${moment(start).format(FORMAT)}`;
 

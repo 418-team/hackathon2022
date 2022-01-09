@@ -36,13 +36,13 @@ function UsersRoutes() {
         <IoCalendarSharp fontSize={iconSize} color="black" />
         <span>События</span>
       </Link>
+      <Link to="/users">
+        <IoPeople fontSize={iconSize} color="black" />
+        <span>Пользователи</span>
+      </Link>
       <Link to="/profile">
         <IoPersonSharp fontSize={iconSize} color="black" />
-        <span>Мой профиль</span>
-      </Link>
-      <Link to="/team">
-        <IoPeople fontSize={iconSize} color="black" />
-        <span>Моя команда</span>
+        <span>Личный кабинет</span>
       </Link>
     </>
   );

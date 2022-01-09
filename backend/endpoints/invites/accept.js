@@ -1,21 +1,17 @@
-const SQL = `
-  DELETE FROM invites WHERE id=$1 RETURNING id
+const UpdateSQL = `
+  insert into participants (user_id, team_id) values ($1, (select team_id from invites where id=$2))
+  on conflict (user_id) do update set team_id = (select team_id from invites where id=$2) returning team_id
+`;
+
+const DeleteSQL = `
+  delete from invites where id=$1 returning id
 `;
 
 async function handler(req) {
+  const { uid: user_id } = req.jwt;
   const p = req.params;
-
-  const user = (
-    await req.pg.query("SELECT id FROM invites WHERE id=$1", [p.id])
-  ).rows[0];
-  if (!user)
-    return Promise.reject({
-      statusCode: 400,
-      error: "already_exists",
-      message: "Приглашения с таким id не существует",
-    });
-
-  const result = (await req.pg.query(SQL, [p.id])).rows[0];
+  const result = (await req.pg.query(UpdateSQL, [user_id, p.id])).rows[0];
+  await req.pg.query(DeleteSQL, [p.id]);
 
   return Promise.resolve({ statusCode: 200, id: result.id });
 }
@@ -23,7 +19,7 @@ async function handler(req) {
 const params = {
   schema: {
     tags: ["invites"],
-    summary: "Отклонить приглашение",
+    summary: "Принят приглашение",
     security: [{ OAuth2: ["user"] }],
     params: {
       type: "object",

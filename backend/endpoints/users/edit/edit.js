@@ -1,3 +1,5 @@
+const sqlArray = require("../../../utils/sqlArray");
+
 const ERROR_404 = {
   statusCode: 404,
   error: "not_found",
@@ -10,7 +12,16 @@ async function handler(req) {
   ).rows[0];
   if (!data) return Promise.reject(ERROR_404);
 
-  await req.pg.query(
+  await sqlArray(
+    req,
+    "users_skills",
+    "user_id",
+    "skill_id",
+    data.id,
+    req.body.skills
+  );
+
+  await await req.pg.query(
     "UPDATE users SET first_name=$2, last_name=$3, patronymic=$4, email=$5  WHERE id=$1",
     [
       req.params.id,
@@ -43,6 +54,7 @@ const params = {
         last_name: { type: "string" },
         patronymic: { type: "string" },
         email: { type: "string" },
+        skills: { type: "array" },
       },
     },
     response: {

@@ -1,10 +1,8 @@
 async function handler(req) {
-  const data = (
-    await req.pg.query(
-      "SELECT id, team_id, message FROM invites WHERE user_id=$1",
-      [req.jwt.uid]
-    )
-  ).rows[0];
+  const data = await req.pg.query(
+    "SELECT id, team_id, message FROM invites WHERE user_id=$1",
+    [req.jwt.uid]
+  ).rows;
   return Promise.resolve({ statusCode: 200, data });
 }
 
@@ -19,7 +17,7 @@ const params = {
         properties: {
           statusCode: { type: "integer" },
           data: {
-            type: "object",
+            type: "array",
             properties: {
               id: { type: "integer" },
               team_id: { type: "integer" },
