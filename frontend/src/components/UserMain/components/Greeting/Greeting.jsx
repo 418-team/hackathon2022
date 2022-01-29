@@ -1,5 +1,7 @@
 import "./index.css";
 
+import { BiGroup } from "react-icons/bi";
+
 import Circle from "../../Circle";
 import Achievement from "./Achievement";
 
@@ -16,10 +18,11 @@ function Greeting() {
           <Achievement />
           Призовой фонд: 100000р
         </span>
+        <span className="prize">
+          <BiGroup color="white" />
+          1-5 человек в команде
+        </span>
       </h1>
-      {/* <DiscussButton label="Давайте обсудим.."> */}
-      {/*  <PlusIcon size="1.3em"/> */}
-      {/* </DiscussButton> */}
     </section>
   );
 }

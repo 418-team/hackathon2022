@@ -9,7 +9,6 @@ function Achievement() {
       height="1em"
       width="1em"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ marginRight: "1rem" }}
     >
       <path
         fill="none"

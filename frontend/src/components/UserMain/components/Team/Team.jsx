@@ -1,5 +1,7 @@
 import "./index.css";
 
+import { useHistory } from "react-router-dom";
+
 import { ArrowIcon } from "./ArrowIcon";
 
 function Team() {
@@ -29,12 +31,13 @@ function Team() {
 }
 
 function Client({ title, tags, isPlaceholder, link }) {
+  const history = useHistory();
   return (
     <div className="team">
       <div
         className="title"
         style={{ color: isPlaceholder ? "#BDBDBD" : "#6D6E72" }}
-        onClick={() => window.open(link, "_blank").focus()}
+        onClick={() => history.push("/cabinet")}
       >
         {title}
         <ArrowIcon

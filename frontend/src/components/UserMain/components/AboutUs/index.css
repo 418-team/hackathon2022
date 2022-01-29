@@ -41,13 +41,13 @@
     line-height: 120%;
 }
 
-.concepts .primary {
+.section-about_us .primary {
     font-size: 2em;
     font-weight: 300;
     line-height: 115%;
     display: flex;
     flex-direction: column;
-    margin: .5em 0 1em 0;
+    margin: 0.5em 0 1em;
 }
 
 .primary span {
@@ -57,6 +57,10 @@
 .tags {
     display: flex;
     flex-wrap: wrap;
+}
+
+.section-about_us .primary span:nth-child(2) {
+    margin-left: 13vw;
 }
 
 .tags div {
