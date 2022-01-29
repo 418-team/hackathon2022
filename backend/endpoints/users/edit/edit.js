@@ -22,13 +22,14 @@ async function handler(req) {
   );
 
   await await req.pg.query(
-    "UPDATE users SET first_name=$2, last_name=$3, patronymic=$4, email=$5  WHERE id=$1",
+    "UPDATE users SET first_name=$2, last_name=$3, patronymic=$4, email=$5, find_team=$6  WHERE id=$1",
     [
       req.params.id,
       req.body.first_name,
       req.body.last_name,
       req.body.patronymic,
       req.body.email,
+      req.body.find_team,
     ]
   );
 
@@ -38,7 +39,7 @@ async function handler(req) {
 const params = {
   schema: {
     tags: ["users"],
-    security: [{ OAuth2: ["admin"] }],
+    security: [{ OAuth2: ["user"] }],
     summary: "Редактировать пользователя",
     params: {
       type: "object",

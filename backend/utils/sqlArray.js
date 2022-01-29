@@ -1,10 +1,10 @@
 module.exports = async (req, tableName, column1, column2, value1, arr) => {
-  if (arr && arr.length > 0) {
+  if ((arr && arr.length > 0) || arr.length === 0) {
     await req.pg.query(
       `
-                    DELETE
-                    FROM ${tableName}
-                    WHERE ${column1} = $1`,
+            DELETE
+            FROM ${tableName}
+            WHERE ${column1} = $1`,
       [value1]
     );
 
