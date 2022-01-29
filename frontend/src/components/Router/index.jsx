@@ -1,20 +1,20 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import LeftMenu from "../LeftMenu";
+import Join from "../Join";
+import Main from "../UserMain";
 import { Cabinet } from "../UsersCabinet";
-import { Events } from "../UsersEvents";
 import { Users } from "../UsersUsers";
 
 function AdminRouter() {
   return (
     <Router>
       <div>
-        <LeftMenu />
-        <div style={{ padding: "40px 40px 0px 230px" }}>
+        <div>
           <Switch>
-            <Route path="/profile" component={Cabinet} />
+            <Route path="/cabinet" component={Cabinet} />
             <Route path="/users" component={Users} />
-            <Route path="/" component={Events} />
+            <Route path="/join/:code" component={Join} />
+            <Route path="/" component={Main} />
           </Switch>
         </div>
       </div>

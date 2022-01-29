@@ -1,0 +1,79 @@
+.dark, .discuss {
+    transition: .2s;
+}
+
+.button {
+    border: none;
+    background-color: white;
+    -webkit-appearance: none;
+    font-size: 1.1rem;
+    font-weight: 400;
+    padding: 1.2rem 1.4rem;
+    border-radius: .9rem;
+    color: #24272A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.discuss svg {
+    margin-left: .6em;
+    background: #00A5AAD8;
+    border-radius: 50%;
+}
+
+.dark {
+}
+
+.dark.primary {
+    background: transparent;
+    border: 1px solid #6D6E72;
+    box-sizing: border-box;
+}
+
+.dark.secondary {
+    background: #DEDEDE;
+}
+
+.dark svg {
+    margin-left: .6em;
+    border-radius: 50%;
+}
+
+.dark:hover svg circle {
+    fill: #00A5AA;
+}
+
+.dark.primary:hover {
+    background: #DEDEDE;
+}
+
+.dark.secondary:hover {
+    background: #dcdcdc;
+}
+
+
+.dark.primary:active {
+    background: #cdcdcd;
+}
+
+.dark.secondary:active {
+    background: #cdcdcd;
+}
+
+
+.button:hover {
+    background-color: #f1f1f1;
+}
+
+.button:active {
+    background-color: #dcdcdc;
+}
+
+@media (max-width: 961px) {
+    .button {
+        font-size: 1.2rem;
+        padding: 1.4rem 1.6rem;
+    }
+}

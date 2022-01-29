@@ -1,0 +1,74 @@
+.section_main_team {
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    position: relative;
+    z-index: 100;
+    margin: .4rem 0;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+.section_main_team .team {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    margin: 0 0 .5em 0;
+}
+
+.section_main_team .team .tag {
+    margin-left: .4em;
+    color: #6D6E72;
+    font-size: 1.1em;
+    padding: 0 1.3em;
+    font-weight: 400;
+    cursor: default;
+    transition: .2s;
+}
+
+.section_main_team .tag:hover {
+    background: #e7e7e7;
+}
+
+.section_main_team .team div {
+    background: #F0F0F0;
+    min-height: 3em;
+    padding: 0 1em;
+    border-radius: .8em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section_main_team .team .title {
+    flex-grow: 1;
+    color: #6D6E72;
+    font-weight: 400;
+    font-size: 1.3em;
+    margin: 0;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.section_main_team .title:hover {
+    background: #e7e7e7;
+}
+
+.section_main_team .title:hover .arrowIcon circle {
+    fill: #007b7f;
+}
+
+.title:active {
+    background: #dcdcdc;
+}
+
+.team .arrowIcon {
+    height: 1.4em;
+    width: 1.5em;
+}
+
+@media (max-width: 500px) {
+    .team .tag {
+        display: none;
+    }
+}

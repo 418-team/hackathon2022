@@ -1,8 +1,8 @@
 const { createHash } = require("../../utils/security");
 
 const SQL = `
-    INSERT INTO users (email, first_name, last_name, patronymic, password, scopes)
-    VALUES ($1, $2, $3, $4, $5, $6)
+    INSERT INTO users (email, first_name, last_name, password, scopes)
+    VALUES ($1, $2, $3, $5, $6)
     RETURNING id
 `;
 
@@ -24,7 +24,6 @@ async function handler(req) {
       b.email,
       b.first_name,
       b.last_name,
-      b.patronymic,
       createHash(b.password),
       b.is_admin ? ["user", "admin"] : ["user"],
     ])

@@ -1,0 +1,279 @@
+.section {
+    background-color: #EBEBEB;
+}
+
+.team_name {
+    font-size: 1.7rem;
+    margin-top: 0.5rem;
+    padding: 1rem 1rem;
+    background-color: white;
+    border-radius: 0.7rem;
+    align-items: center;
+}
+
+.team_name .description {
+    padding: 0 2rem;
+    color: #6D6E72;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.team_name .link {
+    cursor: pointer;
+    padding: 1rem 2rem 1rem 2rem;
+    color: #24272A;
+    margin: 0;
+}
+
+.team_name h3 {
+    padding: 1rem 2rem 0.3rem 2rem;
+    color: #24272A;
+}
+
+.team_name .code {
+    padding: 0.6rem 1.3rem;
+    background-color: #F0F0F0;
+    border-radius: 1rem;
+    color: #00A5AA;
+}
+
+.header {
+    margin-top: 6rem;
+    background-color: white;
+    padding: 0 1rem;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.search_params {
+    margin-top: 0.5rem;
+    padding: 0.8rem 1rem;
+    background-color: white;
+    border-radius: 0.7rem;
+    align-items: center;
+}
+
+.search_params span {
+    cursor: pointer;
+    padding: 0.3rem 1rem;
+    background: #F0F0F0;
+    color: #6D6E72;
+    border-radius: 0.4rem;
+    margin-right: 0.6rem;
+}
+
+.search_params span.checked {
+    color: white;
+    background-color: black;
+}
+
+.sectionHead {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.sectionHead:hover svg circle {
+    fill: #00A5AA;
+}
+
+.sectionHead svg {
+    margin-left: .8em;
+    height: 2.2em;
+    width: 2.2em;
+}
+
+.projects {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    border-radius: 1rem;
+}
+
+.item {
+    height: 600px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-grow: 1;
+    border-radius: 1em;
+    padding: 1em;
+    width: 30em;
+    margin: 0.5em;
+    cursor: pointer;
+    position: relative;
+}
+
+.information_item {
+    background-color: #EBEBEB;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-grow: 1;
+    border-radius: 1em;
+    padding: 2em;
+    width: 30em;
+    margin: 0.5em;
+    cursor: pointer;
+    position: relative;
+}
+
+@media (max-width: 1000px) {
+    .item {
+        height: 400px;
+    }
+}
+
+.item img {
+    position: absolute;
+    border-radius: 1em;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item svg circle {
+    transition: .2s;
+}
+
+.item svg {
+    width: 1.8em;
+    height: 1.8em;
+}
+
+.ii-about {
+    width: 100%;
+    color: #6D6E72;
+}
+
+.ii-about .title {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(50px);
+    border-radius: .9rem;
+    padding: 1em 1.4em;
+    transition: .2s background-color;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ii-about .title h3 {
+    color: white;
+}
+
+.ii-about .tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0.7rem 0;
+}
+
+.ii-about .description {
+    max-width: 30rem;
+    font-size: 1.2rem;
+    margin: 0.7rem 0;
+}
+
+.contact svg {
+    vertical-align: middle;
+    margin-left: 7px;
+}
+
+.contact:hover svg circle {
+    fill: #00A5AA;
+}
+
+.contact:hover svg path {
+    fill: white;
+}
+
+.contact {
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.ii-about .tags div {
+    padding: 0.3rem 1rem;
+    background: #dadada;
+    color: #6D6E72;
+    border-radius: 0.4rem;
+    margin-right: 0.6rem;
+}
+
+.ii-about .name {
+    color: #6D6E72;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.ii-about .email a {
+    font-size: 1.4rem;
+    color: #6D6E72;
+    margin: 0.1rem 0;
+}
+
+
+.information_item:hover .title {
+    background-color: rgba(100, 100, 100, 0.3);
+}
+
+.information_item:hover svg circle {
+    fill: #00A5AA;
+    fill-opacity: 1;
+}
+
+.information_item:hover svg path {
+    fill: white;
+    fill-opacity: 1;
+}
+
+
+/* fallback на случай если backdrop filter не поддерживается */
+
+@supports not (backdrop-filter: blur(50px)) {
+    .ii-about .title {
+        background-color: #F0F0F0;
+        color: black;
+    }
+
+    .ii-about .title h3 {
+        color: black
+    }
+
+    .item .tags div {
+        background-color: #F0F0F0;
+        color: black
+    }
+
+    .item:hover .title {
+        background-color: #dedede;
+    }
+
+    .item:hover .tags div {
+        background-color: #dedede;
+    }
+
+    .item svg path {
+        fill: black;
+    }
+
+    .item:hover svg circle {
+        fill: #00A5AA;
+        fill-opacity: 1;
+    }
+
+    .item:hover svg path {
+        fill: white;
+    }
+}

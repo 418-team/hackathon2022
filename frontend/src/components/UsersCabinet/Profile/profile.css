@@ -1,0 +1,84 @@
+.profile {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 0.5rem;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: 1rem;
+}
+
+.profile_info {
+    background-color: #EBEBEB;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-grow: 1;
+    border-radius: 1em;
+    padding: 2em;
+    width: 30em;
+    margin: 0.5em;
+    cursor: pointer;
+    position: relative;
+}
+
+.profile_info_name {
+    font-size: 2rem;
+    margin: 0;
+    color: #24272A;
+}
+
+.profile_info_email {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    color: #494949;
+}
+
+.profile_info_tags {
+    display: flex;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.profile_info_tags .profile_info_tags_tag {
+    padding: 0.3rem 1rem;
+    font-size: 1rem;
+    background: #e7e7e7;
+    color: #6D6E72;
+    margin-right: 0.6rem;
+    border-radius: 0.3rem;
+;
+}
+
+.profile_info_tags .profile_info_tags_tag:hover {
+    background-color: #dedede;
+}
+
+.profile_info input {
+    margin-bottom: 0.2rem;
+}
+
+.skills_list {
+    background-color: #e7e7e7;
+    border-radius: 0.3rem;
+}
+
+.skill_item {
+    padding: 1rem;
+    font-size: 1.3rem;
+    background-color: transparent;
+    color: #6D6E72;
+}
+
+.skill_item:not(:last-child){
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.skill_item:hover {
+    background-color: #dedede;
+}

@@ -9,7 +9,7 @@ const INCORRECT_CREDS_ERROR = {
 async function handler(req) {
   const user = (
     await req.pg.query(
-      "SELECT id, first_name, last_name, patronymic, email, scopes FROM users WHERE email = $1 AND password = $2",
+      "SELECT id, first_name, last_name, email, scopes FROM users WHERE email = $1 AND password = $2",
       [req.body.username, createHash(req.body.password)]
     )
   ).rows[0];

@@ -9,7 +9,14 @@ export async function auth(username, password) {
   return result;
 }
 export async function registration(body) {
-  const result = await axios.post("oauth/registration", JSON.stringify(body));
+  const [first_name, last_name] = body.name.split(" ");
+  const data = {
+    email: body.email,
+    password: body.password,
+    first_name,
+    last_name,
+  };
+  const result = await axios.post("oauth/registration", JSON.stringify(data));
   return result;
 }
 
@@ -17,6 +24,16 @@ export async function getEvents() {
   const result = await axios.get("events/list");
   return result;
 }
+
+export const addNewSkill = async (body) => {
+  const result = await axios.post(`/skills/create`, JSON.stringify(body));
+  return result;
+};
+
+export const editUser = async (id, body) => {
+  const result = await axios.put(`/users/${id}`, JSON.stringify(body));
+  return result;
+};
 
 export async function createEvent(body) {
   const data = { ...body };
@@ -36,6 +53,11 @@ export async function oauthRefresh() {
     "oauth/refresh",
     JSON.stringify({ refresh_token: localStorage.getItem("refresh_token") })
   );
+  return result;
+}
+
+export async function join(id) {
+  const result = await axios.post(`teams/join/${id}`);
   return result;
 }
 

@@ -6,19 +6,15 @@ import { useHistory } from "react-router-dom";
 import { auth, registration } from "../../utils/api";
 import Button from "../shared/Button/Button";
 import Input from "../shared/Input/Input";
+import Logo from "./image/Logo";
 
 function Auth() {
   const [params, setParams] = useState({});
-  const [error, setError] = useState("");
-  const [isLogin, setIsLogin] = useState(true);
+  const [authView, setAuthView] = useState(null);
   const history = useHistory();
 
-  const handleChange = (key, value) => {
-    setParams((prev) => ({ ...prev, [key]: value }));
-  };
-
   const submit = () => {
-    if (isLogin) {
+    if (authView === "login") {
       auth(params.email, params.password)
         .then((r) => {
           localStorage.setItem("refresh_token", r.data.refresh_token);
@@ -31,73 +27,129 @@ function Auth() {
         })
         .catch((err) => {
           console.error("auth", err);
-          setError(err.response?.data?.message || "Произошла ошибка");
         });
     } else {
       registration(params).then(() => {
-        setIsLogin(true);
+        setAuthView("login");
       });
     }
   };
 
+  const onChangeView = (value) => {
+    setAuthView(value);
+  };
+
+  const onChange = (k, v) => {
+    setParams((prev) => ({ ...prev, [k]: v }));
+  };
+
   return (
     <div className="auth_container">
-      <div className="form">
-        <div className="auth_title">Вход в систему</div>
-        {error && <b>{error}</b>}
-        <Input
-          type="email"
-          mode="secondary"
-          placeholder="Email"
-          onChange={(e) => handleChange("email", e.currentTarget.value)}
+      {authView === "login" && (
+        <LoginView
+          onSubmit={submit}
+          onChange={onChange}
+          onCancel={onChangeView}
+          params={params}
         />
-        {!isLogin && (
-          <>
-            <Input
-              type="text"
-              value={params.first_name}
-              mode="secondary"
-              placeholder="Имя"
-              onChange={(e) =>
-                handleChange("first_name", e.currentTarget.value)
-              }
-            />
-            <Input
-              type="text"
-              value={params.last_name}
-              mode="secondary"
-              placeholder="Фамилия"
-              onChange={(e) => handleChange("last_name", e.currentTarget.value)}
-            />
-            <Input
-              type="text"
-              value={params.patronymic}
-              mode="secondary"
-              placeholder="Отчество"
-              onChange={(e) =>
-                handleChange("patronymic", e.currentTarget.value)
-              }
-            />
-          </>
-        )}
-        <Input
-          type="password"
-          mode="secondary"
-          placeholder="Пароль"
-          onChange={(e) => handleChange("password", e.currentTarget.value)}
+      )}
+      {authView === "registration" && (
+        <RegistrationView
+          onSubmit={submit}
+          onChange={onChange}
+          onCancel={onChangeView}
+          params={params}
         />
-        <div className="button_container">
+      )}
+      <div className="greeting">
+        <Logo />
+        <div className="text_container">
+          <h1>Хакатон от разработчиков для разработчиков</h1>
+          <p>Сделаем жить друг другу легче</p>
+        </div>
+        <div className="btn_container">
           <Button
-            onClick={submit}
-            mode="primary"
-            label={isLogin ? "Войти" : "Регистрация"}
+            label="Войти"
+            mode="secondary"
+            onClick={() => onChangeView("login")}
           />
           <Button
-            onClick={() => setIsLogin(!isLogin)}
+            label="Регистрация"
             mode="secondary"
-            label={!isLogin ? "Войти" : "Регистрация"}
+            onClick={() => onChangeView("registration")}
           />
         </div>
+      </div>
+    </div>
+  );
+}
+
+function LoginView({ onCancel, onChange, params, onSubmit }) {
+  return (
+    <div className="login_view">
+      <h1>Войти</h1>
+      <div className="input_container">
+        <Input
+          type="text"
+          placeholder="Email"
+          value={params.email}
+          mode="primary"
+          onChange={(e) => onChange("email", e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Пароль"
+          value={params.password}
+          mode="primary"
+          onChange={(e) => onChange("password", e.target.value)}
+        />
+      </div>
+      <div className="btn_container">
+        <Button label="Войти" mode="secondary" onClick={onSubmit} />
+        <Button
+          label="Отменить"
+          mode="secondary"
+          onClick={() => onCancel(null)}
+        />
+      </div>
+    </div>
+  );
+}
+
+function RegistrationView({ onCancel, onChange, params, onSubmit }) {
+  return (
+    <div className="login_view">
+      <h1>Регистрация</h1>
+      <div className="input_container">
+        <Input
+          type="text"
+          placeholder="Email"
+          value={params.email}
+          mode="primary"
+          onChange={(e) => onChange("email", e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Имя Фамилия"
+          value={params.name}
+          mode="primary"
+          onChange={(e) => onChange("name", e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Пароль"
+          value={params.password}
+          mode="primary"
+          onChange={(e) => onChange("password", e.target.value)}
+        />
+      </div>
+      <div className="btn_container">
+        <Button label="Войти" mode="secondary" onClick={onSubmit} />
+        <Button
+          label="Отменить"
+          mode="secondary"
+          onClick={() => onCancel(null)}
+        />
       </div>
     </div>
   );

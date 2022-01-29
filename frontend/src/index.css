@@ -1,13 +1,104 @@
+html,
 body {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  transition: background, color, background-color, fill .2s;
+}
+
+h1 {
+  color: white;
+  font-weight: 400;
+  font-size: 3.1em;
+  line-height: 111%;
+}
+
+h2 {
+  color: #24272A;
+  font-weight: 400;
+  font-size: 2.6em;
+  line-height: 111%;
+  margin: 0;
+}
+
+h3 {
+  color: white;
+  font-weight: 400;
+  font-size: 1.4em;
+  margin: 0;
+}
+
+hr {
+  color: #DEDEDE;
+  background-color: #DEDEDE;
+  height: .6px;
+  border: none;
+  margin: 1em 0 1em 0;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6D6E72;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #24272A;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (min-width: 10px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (min-width: 320px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media (min-width: 500px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 2.8em;
+  }
+}
+
+@media (min-width: 961px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media (min-width: 1281px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (min-width: 1600px) {
+  html {
+    font-size: 100%;
+  }
 }

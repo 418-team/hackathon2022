@@ -3,7 +3,12 @@ const filter = (elements, value) => {
   return value.length > 0
     ? elements.filter((el) =>
         keys.some((key) => {
-          return el?.[key]?.toString()?.indexOf(value) !== -1;
+          return (
+            el?.[key]
+              ?.toString()
+              .toLowerCase()
+              ?.indexOf(value.toLowerCase()) !== -1
+          );
         })
       )
     : elements;

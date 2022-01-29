@@ -1,6 +1,9 @@
+const { uid } = require('uid');
+
+
 const SQL = `
-    INSERT INTO teams (title, description, admin_id)
-    VALUES ($1, $2, $3)
+    INSERT INTO teams (title, description, admin_id, invite_code)
+    VALUES ($1, $2, $3, $4)
     RETURNING id
 `;
 
@@ -19,7 +22,7 @@ async function handler(req) {
     });
 
   const result = (
-    await req.pg.query(SQL, [b.title, b.description, b.admin_id || user_id])
+    await req.pg.query(SQL, [b.title, b.description, b.admin_id || user_id, uid(6)])
   ).rows[0];
 
   await req.pg.query(

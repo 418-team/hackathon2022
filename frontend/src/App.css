@@ -16,7 +16,14 @@ a {
 }
 
 .add-form {
-  margin: 10px 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(15px);
+  background-color: rgba(0,0,0, .40);
+  z-index: 1000;
+  padding-top: 10rem;
+  text-align: -webkit-center;
 }
 
 svg {
@@ -24,10 +31,14 @@ svg {
 }
 
 .add-form > div {
-  width: fit-content;
-  background: #e1e1e1;
+  width: 50rem;
+  background: rgba(255, 255, 255, 0.40);
   padding: 10px;
   border-radius: 10px;
+}
+
+.add-form > div * {
+  color: white;
 }
 
 .add-form div input:not([type="checkbox"]), textarea {
@@ -35,6 +46,14 @@ svg {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+}
+
+.add-form .btn_container {
+  display: flex;
+}
+
+.add-form .btn_container button {
+  align-self: center;
 }
 
 .tag {

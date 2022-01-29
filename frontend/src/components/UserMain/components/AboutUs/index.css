@@ -1,0 +1,112 @@
+.section-about_us {
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    position: relative;
+    z-index: 100;
+    margin: .4rem 0;
+    padding: 0 1.3rem 1rem 1.3rem;
+}
+
+.section h4 {
+    margin: 1.5em 0 1em 0;
+}
+
+.title {
+    margin: 0 0 1em 0;
+}
+
+.about {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 1rem;
+    color: #6D6E72;
+}
+
+.concepts {
+    max-width: 700px;
+}
+
+.concepts .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.concepts .items p {
+    /*text-align: justify;*/
+    width: calc(50% - 2rem);
+    margin: .5em 1em 1em 0;
+    line-height: 120%;
+}
+
+.concepts .primary {
+    font-size: 2em;
+    font-weight: 300;
+    line-height: 115%;
+    display: flex;
+    flex-direction: column;
+    margin: .5em 0 1em 0;
+}
+
+.primary span {
+    margin: .1em 0;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tags div {
+    background-color: #F0F0F0;
+    border-radius: .4em;
+    color: #6D6E72;
+    font-weight: 400;
+    font-size: .9em;
+    padding: .4em .8em;
+    margin: 0 .6em .6em 0;
+    cursor: default;
+}
+
+.tags div:hover {
+    background-color: #dedede;
+}
+
+
+@media (max-width: 700px) {
+    .about {
+        flex-direction: column;
+    }
+
+    .primary span:nth-child(2) {
+        margin-left: 13vw;
+    }
+
+    .about {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+    }
+
+    .about h4 {
+        font-size: 1.2rem;
+    }
+
+    .concepts {
+        display: none;
+    }
+
+    /*.concepts .items {*/
+    /*    flex-direction: column;*/
+    /*}*/
+    /*.concepts .items p {*/
+    /*    width: 100%;*/
+    /*}*/
+}
+
+@media (max-width: 1200px) {
+    .concepts {
+        max-width: 500px;
+    }
+}
