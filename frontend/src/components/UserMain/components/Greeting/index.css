@@ -1,0 +1,46 @@
+.section-greeting {
+    height: calc(90vh - env(safe-area-inset-bottom));
+    position: relative;
+    padding: 1.5rem;
+    z-index: 3;
+}
+
+.section-greeting .greeting {
+    max-width: 1000px;
+    position: sticky;
+    top: 3rem;
+    margin: 0 20px 2.5em 0;
+    z-index: -1;
+}
+
+.greeting .prize {
+    font-size: 1.5rem;
+}
+
+.greeting span {
+    display: block;
+    margin: 20px 0;
+}
+
+.section button {
+    position: sticky;
+    top: 90%;
+}
+
+.circle {
+    margin-left: 10px;
+    position: relative;
+    z-index: 10000;
+}
+
+@media (max-width: 500px) {
+    .section {
+        font-size: .9rem;
+    }
+}
+
+@media (max-width: 1300px) {
+    .section-greeting .greeting {
+        max-width: 700px;
+    }
+}
