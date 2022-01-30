@@ -1,5 +1,6 @@
 import "./index.css";
 
+import { AiOutlineCalendar } from "react-icons/ai";
 import { BiGroup } from "react-icons/bi";
 
 import Circle from "../../Circle";
@@ -21,6 +22,10 @@ function Greeting() {
         <span className="prize">
           <BiGroup color="white" />
           1-5 человек в команде
+        </span>
+        <span className="prize">
+          <AiOutlineCalendar color="white" />
+          26 - 27 февраля, старт в 12 утра
         </span>
       </h1>
     </section>

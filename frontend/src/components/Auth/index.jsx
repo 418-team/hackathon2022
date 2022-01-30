@@ -1,11 +1,14 @@
 import "./styles.css";
 
 import { useState } from "react";
+import { AiOutlineCalendar } from "react-icons/ai";
+import { BiGroup } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 
 import { auth, registration } from "../../utils/api";
 import Button from "../shared/Button/Button";
 import Input from "../shared/Input/Input";
+import Achievement from "../UserMain/components/Greeting/Achievement";
 import Logo from "./image/Logo";
 
 function Auth() {
@@ -65,6 +68,18 @@ function Auth() {
         <Logo />
         <div className="text_container">
           <h1>Хакатон от разработчиков для разработчиков</h1>
+          <span className="prize">
+            <Achievement />
+            Призовой фонд: 100000р
+          </span>
+          <span className="prize">
+            <BiGroup color="white" />
+            1-5 человек в команде
+          </span>
+          <span className="prize">
+            <AiOutlineCalendar color="white" />
+            26 - 27 февраля, старт в 12 утра
+          </span>
           <p>Сделаем жить друг другу легче</p>
         </div>
         <div className="btn_container">

@@ -1,7 +1,7 @@
 .section-greeting {
-    height: calc(90vh - env(safe-area-inset-bottom));
+    height: calc(88vh - env(safe-area-inset-bottom));
     position: relative;
-    padding: 1.5rem;
+    padding: 5rem 1.5rem;
     z-index: 3;
 }
 
@@ -13,7 +13,7 @@
     z-index: -1;
 }
 
-.greeting .prize {
+.section-greeting .greeting .prize {
     font-size: 1.5rem;
     margin: 0.3rem 0;
 }

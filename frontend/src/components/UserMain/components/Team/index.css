@@ -8,6 +8,10 @@
     padding: 1rem 1rem 2rem 1rem;
 }
 
+.section_main_team .teams_not_exist p {
+    font-size: 1.4rem;
+}
+
 .section_main_team .team {
     display: flex;
     flex-direction: row;

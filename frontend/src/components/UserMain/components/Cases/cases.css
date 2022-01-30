@@ -1,0 +1,23 @@
+.section_main_cases {
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    position: relative;
+    z-index: 100;
+    margin: .4rem 0;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+.section_main_cases .primary {
+    font-size: 2em;
+    font-weight: 300;
+    max-width: 70%;
+    line-height: 115%;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em 0 1em;
+}
+
+.primary span {
+    margin: .2em 0;
+}

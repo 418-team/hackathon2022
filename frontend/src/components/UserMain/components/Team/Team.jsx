@@ -4,22 +4,30 @@ import { useHistory } from "react-router-dom";
 
 import { ArrowIcon } from "./ArrowIcon";
 
-function Team() {
+function Team({ team }) {
+  const getTags = (p) => {
+    return p.skills?.reduce((acc, s) => {
+      return acc.concat(s.title);
+    }, []);
+  };
+
   return (
     <section className="section_main_team">
       <h2>Моя команда</h2>
       <hr />
       <div className="teams">
-        <Client
-          title="Разин Владислав"
-          link="https://reshak.ru"
-          tags={["Mobile dev", "Team Lead"]}
-        />
-        <Client
-          title="Ильсур Гильмутдинов"
-          link="https://www.instagram.com/p/CUAGFmVtDNL/"
-          tags={["Backend", "Frontend"]}
-        />
+        {team?.participants?.map((participant) => (
+          <Client
+            title={`${participant.first_name} ${participant.last_name}`}
+            tags={getTags(participant)}
+          />
+        )) || (
+          <div className="teams_not_exist">
+            <p>Команда - это самая важная часть соревнований</p>
+            <p>Переходить в менеджер команды и собери себе лучшую команду!</p>
+          </div>
+        )}
+
         <Client
           isPlaceholder
           title="Перейти в менеджер команды"

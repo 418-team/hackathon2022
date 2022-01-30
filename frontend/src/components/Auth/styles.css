@@ -37,8 +37,22 @@
     margin-top: 2rem;
 }
 
-.btn_container {
+.auth_container .btn_container {
     margin: 0 auto 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.auth_container .prize {
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    color: #F0F0F0;
+}
+
+
+.auth_container .prize svg {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .auth_container .btn_container button {
