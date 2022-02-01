@@ -12,8 +12,9 @@
 }
 
 .header-item {
+    font-size: 1.1rem;
     color: white;
-    padding: 1rem 2rem;
+    padding: 0.7rem 1.4rem;
     text-align: center;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(21px);

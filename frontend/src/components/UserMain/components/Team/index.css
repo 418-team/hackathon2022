@@ -9,7 +9,12 @@
 }
 
 .section_main_team .teams_not_exist p {
-    font-size: 1.4rem;
+    font-size: 2em;
+    font-weight: 300;
+}
+
+.section_main_team .teams_not_exist p:last-child {
+    margin-bottom: 0.4rem;
 }
 
 .section_main_team .team {

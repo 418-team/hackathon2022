@@ -2,13 +2,13 @@
     transition: .2s;
 }
 
-.button {
+.arrow-button {
     border: none;
     background-color: white;
     -webkit-appearance: none;
     font-size: 1.1rem;
     font-weight: 400;
-    padding: 1.2rem 1.4rem;
+    padding: 1rem 1.7rem;
     border-radius: .9rem;
     color: #24272A;
     display: flex;
@@ -63,16 +63,16 @@
 }
 
 
-.button:hover {
+.arrow-button:hover {
     background-color: #f1f1f1;
 }
 
-.button:active {
+.arrow-button:active {
     background-color: #dcdcdc;
 }
 
 @media (max-width: 961px) {
-    .button {
+    .arrow-button {
         font-size: 1.2rem;
         padding: 1.4rem 1.6rem;
     }

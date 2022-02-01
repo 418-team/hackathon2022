@@ -10,9 +10,9 @@ function Greeting() {
   return (
     <section className="section-greeting">
       <h1 className="greeting">
-        <span>Хакатон от разработчиков для разработчиков</span>
+        <span>Хакатон «Программисты для программисты»</span>
         <span className="bottom_text">
-          Сделаем жизнь других разработчиков легче
+          Сделай жизнь проще себе и своим коллегам
           <Circle size="2.0rem" className="circle" />
         </span>
         <span className="prize">

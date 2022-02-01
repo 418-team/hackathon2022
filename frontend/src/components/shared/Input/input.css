@@ -7,6 +7,10 @@
     background: rgba(0, 0, 0, 0.10);
 }
 
+.nh-input::placeholder {
+    color: #d7d7d7;
+}
+
 .nh-input:focus{
     outline: none;
 }

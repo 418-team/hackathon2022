@@ -20,7 +20,7 @@
 }
 
 .greeting h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: bold;
     max-width: 80%;
     margin: 0;
@@ -38,6 +38,7 @@
 }
 
 .auth_container .btn_container {
+    position: relative;
     margin: 0 auto 0 auto;
     display: flex;
     align-items: center;
@@ -53,10 +54,6 @@
 .auth_container .prize svg {
     width: 1.5rem;
     height: 1.5rem;
-}
-
-.auth_container .btn_container button {
-    font-size: 1.3rem;
 }
 
 .btn_container button + button {

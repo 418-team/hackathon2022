@@ -4,23 +4,18 @@ import { useEffect, useRef, useState } from "react";
 
 import {
   addNewSkill,
-  createTeam,
   editUser,
   getMyTeam,
   getSkillsList,
 } from "../../utils/api";
 import { useStateCallback } from "../../utils/hooks";
 import filter from "../../utils/search";
-import Button from "../shared/Button/Button";
-import Input from "../shared/Input/Input";
-import Textarea from "../shared/Textarea/Textarea";
 import useClickOutside from "../shared/useClickOutside";
 import Profile from "./Profile/Profile";
 import Team from "./Team/Team";
 
 export default function Cabinet() {
   const [data, setData] = useStateCallback(null);
-  const [createView, setCreateView] = useState(false);
   const [skillInp, setSkillInp] = useState("");
   const [skillsList, setSkillsList] = useState([]);
   const [isInputFocus, setIsInputFocus] = useState(null);
@@ -53,7 +48,7 @@ export default function Cabinet() {
   //   acceptHook(id).then(() => {
   //     getMyTeamFunc();
   //   });
-  // };
+  // }
 
   const team = data?.teams?.length > 0 ? data?.teams[0] : false;
   // const invites = data?.invites.length > 0 ? data?.invites : false;
@@ -136,72 +131,26 @@ export default function Cabinet() {
     set((prev) => ({ ...prev, profile: { profile: _profile } }));
   };
 
-  // const FORMAT = "DD MMMM YYYY HH:MM";
-
   return (
-    <>
-      {createView && (
-        <AddView setAddView={setCreateView} getTeam={getMyTeamFunc} />
-      )}
-      <div className="section-cabinet">
-        <div className="header">
-          <h2>Личный кабинет</h2>
-        </div>
-        <Profile
-          profile={profile}
-          skills={skills}
-          setIsInputFocus={setIsInputFocus}
-          inputRef={inputRef}
-          onDelete={onDeleteSkill}
-          generateList={generateList}
-          isInputFocus={isInputFocus}
-          skillInput={skillInp}
-          setSkillInput={setSkillInp}
-          onAddSkill={onAddSkill}
-          onNewAddSkill={onNewAddSkill}
-          onChangeFindTeam={onChangeFindTeam}
-        />
-        <Team team={team} onClick={() => setCreateView(true)} />
+    <div className="section-cabinet">
+      <div className="header">
+        <h2>Личный кабинет</h2>
       </div>
-    </>
-  );
-}
-
-function AddView({ setAddView, getTeam }) {
-  const [params, setParams] = useState({});
-
-  const onChangeHandler = (key, value) => {
-    setParams((prev) => ({ ...prev, [key]: value }));
-  };
-
-  const onSave = () => {
-    createTeam(params).then(() => getTeam());
-  };
-  return (
-    <div className="add-form">
-      <div>
-        <h2>Создай новую команду</h2>
-        <Input
-          mode="secondary"
-          onChange={(e) => onChangeHandler("title", e.target.value)}
-          placeholder="Название"
-          value={params.title || ""}
-        />
-        <Textarea
-          mode="secondary"
-          onChange={(e) => onChangeHandler("description", e.target.value)}
-          placeholder="Описание"
-          value={params.description || ""}
-        />
-        <div className="btn_container">
-          <Button label="Создать" mode="primary" onClick={onSave} />
-          <Button
-            label="Отменить"
-            mode="secondary"
-            onClick={() => setAddView(false)}
-          />
-        </div>
-      </div>
+      <Profile
+        profile={profile}
+        skills={skills}
+        setIsInputFocus={setIsInputFocus}
+        inputRef={inputRef}
+        onDelete={onDeleteSkill}
+        generateList={generateList}
+        isInputFocus={isInputFocus}
+        skillInput={skillInp}
+        setSkillInput={setSkillInp}
+        onAddSkill={onAddSkill}
+        onNewAddSkill={onNewAddSkill}
+        onChangeFindTeam={onChangeFindTeam}
+      />
+      <Team team={team} getTeam={getMyTeamFunc} />
     </div>
   );
 }

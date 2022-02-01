@@ -1,37 +1,79 @@
-.button {
-    padding: 0.8rem 2rem;
+.button_classic, .discuss {
+    transition: .2s;
+}
+
+.button_classic {
     border: none;
-    font-size: 1rem;
-    border-radius: 8px;
+    background-color: white;
+    -webkit-appearance: none;
+    font-size: 1.1rem;
+    font-weight: 400;
+    padding: 1rem 1.7rem;
+    border-radius: .9rem;
+    color: #24272A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     cursor: pointer;
 }
 
-.button.primary {
-    background-color: #6F0AF0;
-    border: 1px solid #6F0AF0;
-    color: white
+.discuss svg {
+    margin-left: .6em;
+    background: #00A5AAD8;
+    border-radius: 50%;
 }
 
-.button.secondary {
-    border: 1px solid #6F0AF0;
-    background-color: transparent;
-    color: white;
+.button {
 }
 
-.button.primary:hover {
-    background-color: #0d7fb9;
-    color: white
+.button_classic.primary {
+    background: transparent;
+    border: 1px solid #6D6E72;
+    box-sizing: border-box;
 }
 
-.button.secondary:hover {
-   background-color: rgba(255, 255, 255, 0.05);
+.button_classic.secondary {
+    background: #DEDEDE;
 }
 
-.button.primary.disabled {
-    background-color: rgba(0, 119, 182, 0.4);
-    color: white
+.button_classic svg {
+    margin-left: .6em;
+    border-radius: 50%;
 }
 
-.button.secondary.disabled {
-    color: black;
+.button_classic:hover svg circle {
+    fill: #00A5AA;
+}
+
+.button_classic.primary:hover {
+    background: #DEDEDE;
+}
+
+.button_classic.secondary:hover {
+    background: #dcdcdc;
+}
+
+
+.button_classic.primary:active {
+    background: #cdcdcd;
+}
+
+.button_classic.secondary:active {
+    background: #cdcdcd;
+}
+
+
+.button_classic:hover {
+    background-color: #f1f1f1;
+}
+
+.button_classic:active {
+    background-color: #dcdcdc;
+}
+
+@media (max-width: 961px) {
+    .button_classic {
+        font-size: 1.2rem;
+        padding: 1rem 1.6rem;
+    }
 }

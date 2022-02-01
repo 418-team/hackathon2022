@@ -4,7 +4,7 @@ import { ArrowIcon2 } from "./ArrowIcon2";
 
 function ArrowButton(props) {
   return (
-    <button type="button" className="button dark" {...props}>
+    <button type="button" className="arrow-button dark" {...props}>
       <span>{props.label}</span>
       <ArrowIcon2 size="0.8em" />
     </button>

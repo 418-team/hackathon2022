@@ -11,10 +11,11 @@ async function handler(req) {
   const b = req.body;
   const { uid: user_id } = req.jwt;
 
-  const user = (
+  const team = (
     await req.pg.query("SELECT id FROM teams WHERE title=$1", [b.title])
   ).rows[0];
-  if (user)
+
+  if (team)
     return Promise.reject({
       statusCode: 400,
       error: "already_exists",

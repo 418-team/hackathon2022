@@ -1,0 +1,22 @@
+.pop_up_form {
+    position: absolute;
+    background-color: rgba(240, 240, 240, 0.3);
+    padding: 1.3rem;
+    width: 40rem;
+    border-radius: 2rem;
+    backdrop-filter: blur(50px);
+}
+
+.pop_up_form h3 {
+    font-size: 2rem;
+    margin: 0rem 0;
+}
+
+.pop_up_form input {
+    margin-bottom: 0.8rem;
+    color: white;
+}
+
+.pop_up_form .btn_container {
+    display: flex;
+}

@@ -1,7 +1,7 @@
 import "./button.css";
 
 function Button(props) {
-  let clsName = "button ";
+  let clsName = "button_classic ";
   if (props.mode) {
     clsName += props.mode;
   }

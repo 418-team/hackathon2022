@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import "./styles.css";
 
 import { useState } from "react";
@@ -7,7 +9,7 @@ import { useHistory } from "react-router-dom";
 
 import { auth, registration } from "../../utils/api";
 import Button from "../shared/Button/Button";
-import Input from "../shared/Input/Input";
+import PopUp from "../shared/PopUp/PopUp";
 import Achievement from "../UserMain/components/Greeting/Achievement";
 import Logo from "./image/Logo";
 
@@ -46,28 +48,79 @@ function Auth() {
     setParams((prev) => ({ ...prev, [k]: v }));
   };
 
+  const loginFields = [
+    {
+      type: "input",
+      placeholder: "email",
+      button_type: "email",
+      value: params.email,
+      key: "email",
+      onChange,
+    },
+    {
+      type: "input",
+      placeholder: "Пароль",
+      button_type: "password",
+      value: params.password,
+      key: "password",
+      onChange,
+    },
+    {
+      type: "button",
+      mode: "secondary",
+      label: "Войти",
+      onClick: submit,
+    },
+    {
+      type: "button",
+      label: "Отменить",
+      onClick: () => onChangeView(null),
+    },
+  ];
+  const registrationFields = [
+    {
+      type: "input",
+      placeholder: "email",
+      button_type: "email",
+      value: params.email,
+      key: "email",
+      onChange,
+    },
+    {
+      type: "input",
+      placeholder: "Имя Фамилия",
+      button_type: "",
+      value: params.name,
+      key: "name",
+      onChange,
+    },
+    {
+      type: "input",
+      placeholder: "Пароль",
+      button_type: "password",
+      value: params.password,
+      key: "password",
+      onChange,
+    },
+    {
+      type: "button",
+      mode: "secondary",
+      label: "Присоедениться",
+      onClick: submit,
+    },
+    {
+      type: "button",
+      label: "Отменить",
+      onClick: () => onChangeView(null),
+    },
+  ];
+
   return (
     <div className="auth_container">
-      {authView === "login" && (
-        <LoginView
-          onSubmit={submit}
-          onChange={onChange}
-          onCancel={onChangeView}
-          params={params}
-        />
-      )}
-      {authView === "registration" && (
-        <RegistrationView
-          onSubmit={submit}
-          onChange={onChange}
-          onCancel={onChangeView}
-          params={params}
-        />
-      )}
       <div className="greeting">
         <Logo />
         <div className="text_container">
-          <h1>Хакатон от разработчиков для разработчиков</h1>
+          <h1>Хакатон «Программисты для программисты»</h1>
           <span className="prize">
             <Achievement />
             Призовой фонд: 100000р
@@ -78,93 +131,26 @@ function Auth() {
           </span>
           <span className="prize">
             <AiOutlineCalendar color="white" />
-            26 - 27 февраля, старт в 12 утра
+            26 - 27 февраля, старт в 12:00
           </span>
-          <p>Сделаем жить друг другу легче</p>
+          <p>Сделай жизнь проще себе и своим коллегам</p>
         </div>
         <div className="btn_container">
+          {authView === "login" && <PopUp title="Войти" fields={loginFields} />}
+          {authView === "registration" && (
+            <PopUp title="Регистраниция" fields={registrationFields} />
+          )}
           <Button
             label="Войти"
             mode="secondary"
             onClick={() => onChangeView("login")}
           />
           <Button
-            label="Регистрация"
+            label="Присоедениться"
             mode="secondary"
             onClick={() => onChangeView("registration")}
           />
         </div>
-      </div>
-    </div>
-  );
-}
-
-function LoginView({ onCancel, onChange, params, onSubmit }) {
-  return (
-    <div className="login_view">
-      <h1>Войти</h1>
-      <div className="input_container">
-        <Input
-          type="text"
-          placeholder="Email"
-          value={params.email}
-          mode="primary"
-          onChange={(e) => onChange("email", e.target.value)}
-        />
-        <Input
-          type="text"
-          placeholder="Пароль"
-          value={params.password}
-          mode="primary"
-          onChange={(e) => onChange("password", e.target.value)}
-        />
-      </div>
-      <div className="btn_container">
-        <Button label="Войти" mode="secondary" onClick={onSubmit} />
-        <Button
-          label="Отменить"
-          mode="secondary"
-          onClick={() => onCancel(null)}
-        />
-      </div>
-    </div>
-  );
-}
-
-function RegistrationView({ onCancel, onChange, params, onSubmit }) {
-  return (
-    <div className="login_view">
-      <h1>Регистрация</h1>
-      <div className="input_container">
-        <Input
-          type="text"
-          placeholder="Email"
-          value={params.email}
-          mode="primary"
-          onChange={(e) => onChange("email", e.target.value)}
-        />
-        <Input
-          type="text"
-          placeholder="Имя Фамилия"
-          value={params.name}
-          mode="primary"
-          onChange={(e) => onChange("name", e.target.value)}
-        />
-        <Input
-          type="text"
-          placeholder="Пароль"
-          value={params.password}
-          mode="primary"
-          onChange={(e) => onChange("password", e.target.value)}
-        />
-      </div>
-      <div className="btn_container">
-        <Button label="Войти" mode="secondary" onClick={onSubmit} />
-        <Button
-          label="Отменить"
-          mode="secondary"
-          onClick={() => onCancel(null)}
-        />
       </div>
     </div>
   );
