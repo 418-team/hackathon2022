@@ -33,3 +33,49 @@
 .header-item:hover {
     background-color: #a1a1a1;
 }
+
+.mobile_header {
+    display: none;
+}
+
+@media screen and (max-width: 786px) {
+    .header-nav {
+        display: none;
+    }
+
+    .mobile_header {
+        position: absolute;
+        width: calc(100% - 2rem);
+        z-index: 1000;
+        margin: 1.5rem 1rem;
+        display: flex;
+    }
+
+    .mobile_header__section {
+        border-radius: 1rem;
+    }
+
+    .section_item {
+        font-size: 1.1rem;
+        color: white;
+        padding: 0.7rem 1.4rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(21px);
+        border-radius: 1rem;
+    }
+
+    .mobile_header__dots {
+        font-size: 1.1rem;
+        margin-left: 1rem;
+        color: white;
+    }
+
+    .mobile_header-active {
+        background: white
+    }
+
+    .mobile_header-active .mobile_header__dots {
+        color: black;
+    }
+}
