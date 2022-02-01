@@ -54,7 +54,7 @@ function Client({ title, tags, isPlaceholder, link }) {
         />
       </div>
       {!isPlaceholder &&
-        tags.map((tag, i) => (
+        tags.slice(0, 3).map((tag, i) => (
           <div className="tag" key={i}>
             {tag}
           </div>

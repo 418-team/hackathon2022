@@ -76,8 +76,8 @@
     width: 1.5em;
 }
 
-@media (max-width: 500px) {
+@media screen and (max-width: 768px) {
     .team .tag {
-        display: none;
+        display: none !important;
     }
 }

@@ -9,7 +9,6 @@ export function Checkbox({ label, value, disabled, onChange }) {
 
   return (
     <label className="container">
-      <p>{label}</p>
       <input
         tabIndex={100}
         type="checkbox"
@@ -18,6 +17,7 @@ export function Checkbox({ label, value, disabled, onChange }) {
         onChange={handleOnChange}
       />
       <span className="checkmark" />
+      <p>{label}</p>
     </label>
   );
 }

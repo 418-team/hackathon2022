@@ -13,8 +13,8 @@ module.exports = {
   },
   plugins: ["prettier", "react", "unused-imports", "simple-import-sort"],
   rules: {
+    "prettier/prettier": ["warn",  {"endOfLine": "auto"}],
     "jsx-a11y/no-autofocus": [1, { ignoreNonDOM: true }],
-    "prettier/prettier": "error",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/display-name": "off",
