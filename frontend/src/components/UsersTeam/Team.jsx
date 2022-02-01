@@ -2,11 +2,15 @@ import "./team.css";
 
 import { useEffect, useState } from "react";
 
-import { getMyTeam } from "../../utils/api";
+import { createTeam, getMyTeam } from "../../utils/api";
+import ArrowButton from "../shared/ArrowButton/ArrowButton";
+import PopUp from "../shared/PopUp/PopUp";
 import { PlusIcon } from "../UsersCabinet/image/PlusIcon";
 
 function Team() {
+  const [params, setParams] = useState({});
   const [data, setData] = useState({});
+  const [createView, setCreateView] = useState(false);
 
   const getMyTeamFunc = () =>
     getMyTeam().then(({ data: requestData }) => {
@@ -18,6 +22,42 @@ function Team() {
     return () => setData(null);
   }, []);
 
+  const onChange = (key, value) => {
+    setParams((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const saveTeam = () => createTeam(params).then(() => getMyTeamFunc());
+
+  const teamField = [
+    {
+      type: "input",
+      placeholder: "Название команды",
+      button_type: "input",
+      value: params.name,
+      key: "title",
+      onChange,
+    },
+    {
+      type: "input",
+      placeholder: "Описание",
+      button_type: "input",
+      value: params.description,
+      key: "description",
+      onChange,
+    },
+    {
+      type: "button",
+      mode: "secondary",
+      label: "Создать команду",
+      onClick: () => saveTeam(),
+    },
+    {
+      type: "button",
+      label: "Отменить",
+      onClick: () => setCreateView(false),
+    },
+  ];
+
   console.log(data);
 
   const team = data?.teams?.length > 0 ? data?.teams[0] : false;
@@ -27,28 +67,54 @@ function Team() {
       <div className="header">
         <h2>Кабинет команды</h2>
       </div>
-      <div className="team">
-        <div className="team_name">
-          <h3>{team.title}</h3>
-          <p className="description">{team.description}</p>
-          <p
-            className="link"
-            onClick={() =>
-              navigator.clipboard.writeText(
-                `https://hackathon418team.com/join/${team.invite_code}`
-              )
-            }
-          >
-            Код для приглашения в команду{" "}
-            <span className="code">{team.invite_code}</span>
-          </p>
-        </div>
-        {team?.participants?.map((participant, k) => (
-          <div className="projects" key={k}>
-            <RenderParticipantGrid index={k} participant={participant} />
+      {team ? (
+        <div className="team">
+          <div className="team_name">
+            <h3>{team.title}</h3>
+            <p className="description">{team.description}</p>
+            <p
+              className="link"
+              onClick={() =>
+                navigator.clipboard.writeText(
+                  `https://hackathon418team.com/join/${team.invite_code}`
+                )
+              }
+            >
+              Код для приглашения в команду{" "}
+              <span className="code">{team.invite_code}</span>
+            </p>
           </div>
-        ))}
-      </div>
+          {team?.participants?.map((participant, k) => (
+            <div className="projects" key={k}>
+              <RenderParticipantGrid index={k} participant={participant} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <section className="section-team">
+          <div className="team">
+            <p className="text">
+              Команда — самая важная часть любых соревнований
+              <br />
+              Создай свою или присоеденись к команде используя код
+            </p>
+            <div className="btn_container">
+              {createView && (
+                <PopUp
+                  bottom="25rem"
+                  left="1rem"
+                  title="Создать команду"
+                  fields={teamField}
+                />
+              )}
+              <ArrowButton
+                label="Создать команду"
+                onClick={() => setCreateView(true)}
+              />
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
