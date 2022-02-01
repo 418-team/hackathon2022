@@ -39,14 +39,14 @@ function Header() {
           </span>
         </div>
       </div>
-      <div className="mobile_header mobile_header-active">
+      <div className={`mobile_header ${activeMenu ? 'mobile_header-active' : ''}`}>
         <div className="mobile_header__section">
           <span className="section_item" onClick={() => history.push("/")}>
             <Logo fill={activeMenu ? 'black' : 'white'} />
           </span>
         </div>
         <div className="mobile_header__section">
-          <span className="section_item mobile_header__dots">
+          <span className="section_item mobile_header__dots" onClick={() => setActiveMenu(status => !status)}>
             {activeMenu ? '🗙' : '⏺ ⏺'}
           </span>
         </div>

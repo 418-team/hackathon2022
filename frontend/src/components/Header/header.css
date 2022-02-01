@@ -58,21 +58,44 @@
     .section_item {
         font-size: 1.1rem;
         color: white;
-        padding: 0.7rem 1.4rem;
+        padding: 1rem 1.1rem;
         text-align: center;
         background: rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(21px);
         border-radius: 1rem;
     }
 
+    .section_item:hover {
+        background-color: #707070;
+    }
+
     .mobile_header__dots {
         font-size: 1.1rem;
         margin-left: 1rem;
         color: white;
+        width: 36px;
+        height: 36px;
     }
 
     .mobile_header-active {
-        background: white
+        background: white;
+        width: 100%;
+        z-index: 100;
+        display: flex;
+        margin: 0;
+        height: 20rem;
+    }
+
+    .mobile_header-active .section_item {
+        background: #F0F0F0;
+    }
+
+    .mobile_header-active .section_item:hover {
+        background-color: #888888;
+    }
+
+    .mobile_header-active .mobile_header__section {
+        margin: 1.5rem 0 0 1rem;
     }
 
     .mobile_header-active .mobile_header__dots {
