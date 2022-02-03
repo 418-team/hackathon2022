@@ -64,11 +64,7 @@
 }
 
 .section_main_team .title:hover .arrowIcon circle {
-    fill: #007b7f;
-}
-
-.title:active {
-    background: #dcdcdc;
+    fill: #00A5AA;
 }
 
 .team .arrowIcon {
