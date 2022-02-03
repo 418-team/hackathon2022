@@ -85,7 +85,7 @@
         z-index: 100;
         display: flex;
         margin: 0;
-        height: 19.5rem;
+        height: 20rem;
         user-select: none;
     }
 
@@ -120,7 +120,7 @@
         grid-template-rows: repeat(3, 50px);
     }
 
-    .mobile_header_button:nth-child(1) {
+    .mobile_header_button:first-child {
         width: 95%;;
         grid-column: 1 / 3;
     }
