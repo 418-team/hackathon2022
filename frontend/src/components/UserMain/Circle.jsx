@@ -14,6 +14,7 @@ function Circle({ className, size = 37 }) {
       className={className}
       viewBox="0 0 37 37"
       fill="none"
+      style={{verticalAlign: 'baseline'}}
       xmlns="http://www.w3.org/2000/svg"
     >
       {hover ? (
