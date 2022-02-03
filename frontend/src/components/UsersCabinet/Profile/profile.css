@@ -4,7 +4,6 @@
     background-size: cover;
     margin-top: 0.5rem;
     width: 100%;
-    cursor: pointer;
     position: relative;
     background-color: white;
     display: flex;
@@ -23,7 +22,6 @@
     padding: 2em;
     width: 30em;
     margin: 0.5em;
-    cursor: pointer;
     position: relative;
 }
 
@@ -52,6 +50,7 @@
     color: #6D6E72;
     margin-right: 0.6rem;
     border-radius: 0.3rem;
+    cursor: pointer;
 ;
 }
 
@@ -77,6 +76,7 @@
     font-size: 1rem;
     background-color: transparent;
     color: #6D6E72;
+    cursor: pointer;
 }
 
 .skill_item:not(:last-child){

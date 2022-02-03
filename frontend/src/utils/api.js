@@ -161,3 +161,8 @@ export const getTypes = async () => {
   const result = await axios.get("/types/list");
   return result;
 };
+
+export const invite = async (body) => {
+  const result = await axios.post("/invites/create", JSON.stringify(body));
+  return result;
+};
