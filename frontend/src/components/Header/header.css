@@ -87,6 +87,7 @@
         margin: 0;
         height: 20rem;
         user-select: none;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
     }
 
     .mobile_header-active .section_item {

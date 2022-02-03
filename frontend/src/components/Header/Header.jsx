@@ -1,8 +1,9 @@
 import "./header.css";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import useClickOutside from "../shared/useClickOutside";
 import Button from "./Button";
 import Logo from "./Logo";
 
@@ -13,17 +14,23 @@ const logout = () => {
 
 const buttonList = {
   "Личный кабинет": "/cabinet",
-  "Команда": "/team",
-  "Кейсы": "/cases",
-  "Участники": "/users",
+  Команда: "/team",
+  Кейсы: "/cases",
+  Участники: "/users",
 };
 
 function MobileHeader({ history }) {
+  const mobileMenuRef = useRef();
   const [activeMenu, setActiveMenu] = useState(false);
+
+  useClickOutside(mobileMenuRef, () => {
+    setActiveMenu(false);
+  });
 
   return (
     <div
       className={`mobile_header ${activeMenu ? "mobile_header-active" : ""}`}
+      ref={mobileMenuRef}
     >
       <div className="mobile_header__section">
         <span className="section_item" onClick={() => history.push("/")}>
@@ -40,12 +47,15 @@ function MobileHeader({ history }) {
       </div>
       {activeMenu && (
         <div className="mobile_header__buttons">
-          {Object.keys(buttonList).map((name) => 
-            <Button text={name} onClick={() => {
-              history.push(buttonList[name]);
-              setActiveMenu(false)
-            }} />
-          )}
+          {Object.keys(buttonList).map((name) => (
+            <Button
+              text={name}
+              onClick={() => {
+                history.push(buttonList[name]);
+                setActiveMenu(false);
+              }}
+            />
+          ))}
           <Button text="Выход" onClick={logout} />
         </div>
       )}
