@@ -35,7 +35,7 @@ function MobileHeader({ history }) {
           className="section_item mobile_header__dots"
           onClick={() => setActiveMenu((status) => !status)}
         >
-          {activeMenu ? "🗙" : "⏺ ⏺"}
+          {activeMenu ? "🗙" : "⬤ ⬤"}
         </span>
       </div>
       {activeMenu && (
