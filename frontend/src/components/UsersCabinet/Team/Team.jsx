@@ -69,18 +69,18 @@ function Team({ team, getTeam }) {
           Создай свою или присоеденись к команде используя код
         </p>
         <div className="btn_container">
-          {createView && (
-            <PopUp
-              bottom="25rem"
-              left="1rem"
-              title="Создать команду"
-              fields={teamField}
+          <PopUp
+            bottom="25rem"
+            left="1rem"
+            title="Создать команду"
+            fields={teamField}
+            open={createView}
+          >
+            <ArrowButton
+              label="Создать команду"
+              onClick={() => setCreateView(true)}
             />
-          )}
-          <ArrowButton
-            label="Создать команду"
-            onClick={() => setCreateView(true)}
-          />
+          </PopUp>
         </div>
       </div>
     </section>

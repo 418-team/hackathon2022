@@ -56,7 +56,7 @@
     height: 1.5rem;
 }
 
-.btn_container button + button {
+.btn_container .pop_up__wrapper + .pop_up__wrapper {
     margin-left: 15px;
 }
 

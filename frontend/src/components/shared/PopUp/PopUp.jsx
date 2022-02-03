@@ -1,12 +1,34 @@
 import "./pop_up.css";
 
+import { useRef } from "react";
+
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 
-function PopUp({ fields, title, bottom = "10rem", left = "-10rem" }) {
+function PopUp({ fields, title, left = "-10rem", children, open }) {
   const inputs = fields.filter((f) => f.type === "input");
   const buttons = fields.filter((f) => f.type === "button");
+  const childrenRef = useRef(null);
 
+  const bottom = (childrenRef?.current?.offsetHeight || 0) + 10;
+
+  return (
+    <div style={{ position: "relative" }} className="pop_up__wrapper">
+      {open && (
+        <PopUpWindow
+          title={title}
+          bottom={bottom}
+          left={left}
+          inputs={inputs}
+          buttons={buttons}
+        />
+      )}
+      <div ref={childrenRef}>{children}</div>
+    </div>
+  );
+}
+
+function PopUpWindow({ bottom, left, title, inputs, buttons }) {
   return (
     <div className="pop_up_form" style={{ bottom, left }}>
       <h3>{title}</h3>

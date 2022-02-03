@@ -123,7 +123,7 @@ function Auth() {
           <h1>Хакатон «Программисты для программисты»</h1>
           <span className="prize">
             <Achievement />
-            Призовой фонд: 100000р
+            Призовой фонд: 50000р
           </span>
           <span className="prize">
             <BiGroup color="white" />
@@ -136,20 +136,20 @@ function Auth() {
           <p>Сделай жизнь проще себе и своим коллегам</p>
         </div>
         <div className="btn_container">
-          {authView === "login" && <PopUp title="Войти" fields={loginFields} />}
-          {authView === "registration" && (
-            <PopUp title="Регистраниция" fields={registrationFields} />
-          )}
-          <Button
-            label="Войти"
-            mode="secondary"
-            onClick={() => onChangeView("login")}
-          />
-          <Button
-            label="Присоедениться"
-            mode="secondary"
-            onClick={() => onChangeView("registration")}
-          />
+         <PopUp title="Войти" fields={loginFields} open={authView === "login"}>
+            <Button
+               label="Войти"
+               mode="secondary"
+               onClick={() => onChangeView("login")}
+            />
+          </PopUp>
+          <PopUp title="Регистраниция" fields={registrationFields} open={authView === "registration"} >
+            <Button
+                label="Присоедениться"
+                mode="secondary"
+                onClick={() => onChangeView("registration")}
+            />
+          </PopUp>
         </div>
       </div>
     </div>

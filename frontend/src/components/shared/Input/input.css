@@ -4,11 +4,11 @@
     font-size: 1.2rem;
     border-radius: 8px;
     width: 100%;
-    background: rgba(0, 0, 0, 0.10);
+    background: rgba(0, 0, 0, 0.05)
 }
 
 .nh-input::placeholder {
-    color: #4d4d4d;
+    color: rgb(189, 189, 189);;
 }
 
 .nh-input:focus{
@@ -29,7 +29,7 @@
 }
 
 .nh-input.secondary:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.07);
 }
 
 .nh-input.secondary::placeholder {
@@ -45,4 +45,11 @@
 .nh-input.secondary.disabled {
     border: 2px solid rgba(0, 119, 182, 0.4);
     color: black;
+}
+
+@media (max-width: 961px) {
+    .nh-input {
+        font-size: 1.4rem;
+        padding: 1.2rem 1.6rem;
+    }
 }

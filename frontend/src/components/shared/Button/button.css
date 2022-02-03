@@ -62,9 +62,12 @@
     background: #cdcdcd;
 }
 
+.button_classic.secondary:hover {
+    background-color: #eeeeee
+}
 
-.button_classic:hover {
-    background-color: #f1f1f1;
+.button_classic.primary:hover {
+    background-color: rgba(239, 239, 239, 0.1);
 }
 
 .button_classic:active {

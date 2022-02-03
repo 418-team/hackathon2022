@@ -17,7 +17,7 @@ function Greeting() {
         </span>
         <span className="prize">
           <Achievement />
-          Призовой фонд: 100000р
+          Призовой фонд: 50000р
         </span>
         <span className="prize">
           <BiGroup color="white" />
