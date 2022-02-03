@@ -10,18 +10,14 @@ import { Users } from "../UsersUsers";
 function AdminRouter() {
   return (
     <Router>
-      <div>
-        <div>
-          <Header />
-          <Switch>
-            <Route path="/cabinet" component={Cabinet} />
-            <Route path="/users" component={Users} />
-            <Route path="/team" component={Team} />
-            <Route path="/join/:code" component={Join} />
-            <Route path="/" component={Main} />
-          </Switch>
-        </div>
-      </div>
+      <Header />
+      <Switch>
+        <Route path="/cabinet" component={Cabinet} />
+        <Route path="/users" component={Users} />
+        <Route path="/team" component={Team} />
+        <Route path="/join/:code" component={Join} />
+        <Route path="/" component={Main} />
+      </Switch>
     </Router>
   );
 }
