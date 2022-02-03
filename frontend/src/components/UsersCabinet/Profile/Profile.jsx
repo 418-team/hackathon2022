@@ -39,7 +39,7 @@ function Profile({
         <div style={{ position: "relative", maxWidth: "450px" }} ref={inputRef}>
           <Input
             onFocus={() => setIsInputFocus(true)}
-            onChange={(e) => setSkillInput(e.target.value)}
+            onChange={(e) => e.target.value.length <= 32 && setSkillInput(e.target.value)}
             value={skillInput}
             placeholder="Введите свой навык и выберите из списка"
           />
