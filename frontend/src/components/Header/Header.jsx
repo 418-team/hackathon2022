@@ -3,16 +3,58 @@ import "./header.css";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import Button from "./Button";
 import Logo from "./Logo";
+
+const logout = () => {
+  localStorage.clear();
+  window.location.reload();
+};
+
+const buttonList = {
+  "Личный кабинет": "/cabinet",
+  "Команда": "/team",
+  "Кейсы": "/",
+  "Участники": "/",
+};
+
+function MobileHeader({ history }) {
+  const [activeMenu, setActiveMenu] = useState(false);
+
+  return (
+    <div
+      className={`mobile_header ${activeMenu ? "mobile_header-active" : ""}`}
+    >
+      <div className="mobile_header__section">
+        <span className="section_item" onClick={() => history.push("/")}>
+          <Logo fill={activeMenu ? "black" : "white"} />
+        </span>
+      </div>
+      <div className="mobile_header__section">
+        <span
+          className="section_item mobile_header__dots"
+          onClick={() => setActiveMenu((status) => !status)}
+        >
+          {activeMenu ? "🗙" : "⏺ ⏺"}
+        </span>
+      </div>
+      {activeMenu && (
+        <div className="mobile_header__buttons">
+          {Object.keys(buttonList).map((name) => 
+            <Button text={name} onClick={() => {
+              history.push(buttonList[name]);
+              setActiveMenu(false)
+            }} />
+          )}
+          <Button text="Выход" onClick={logout} />
+        </div>
+      )}
+    </div>
+  );
+}
 
 function Header() {
   const history = useHistory();
-  const [activeMenu, setActiveMenu] = useState(false);
-
-  const logout = () => {
-    localStorage.clear();
-    document.location.reload();
-  };
 
   return (
     <>
@@ -39,18 +81,7 @@ function Header() {
           </span>
         </div>
       </div>
-      <div className={`mobile_header ${activeMenu ? 'mobile_header-active' : ''}`}>
-        <div className="mobile_header__section">
-          <span className="section_item" onClick={() => history.push("/")}>
-            <Logo fill={activeMenu ? 'black' : 'white'} />
-          </span>
-        </div>
-        <div className="mobile_header__section">
-          <span className="section_item mobile_header__dots" onClick={() => setActiveMenu(status => !status)}>
-            {activeMenu ? '🗙' : '⏺ ⏺'}
-          </span>
-        </div>
-      </div>
+      <MobileHeader history={history} />
     </>
   );
 }
