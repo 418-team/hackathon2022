@@ -32,6 +32,10 @@
     background: rgba(0, 0, 0, 0.05);
 }
 
+.nh-input.secondary::placeholder {
+    color: #c8c8c8;
+}
+
 .nh-input.primary.disabled {
     background-color: rgba(0, 119, 182, 0.4);
     border: 2px solid rgba(0, 119, 182, 0.4);
