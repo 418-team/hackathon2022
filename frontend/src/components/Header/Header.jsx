@@ -14,8 +14,8 @@ const logout = () => {
 const buttonList = {
   "Личный кабинет": "/cabinet",
   "Команда": "/team",
-  "Кейсы": "/",
-  "Участники": "/",
+  "Кейсы": "/cases",
+  "Участники": "/users",
 };
 
 function MobileHeader({ history }) {
