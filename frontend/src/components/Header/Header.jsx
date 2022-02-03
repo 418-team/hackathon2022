@@ -75,15 +75,14 @@ function Header() {
           </span>
         </div>
         <div className="header-section">
-          <span
-            className="header-item"
-            onClick={() => history.push("/cabinet")}
-          >
-            Личный кабинет
-          </span>
-          <span className="header-item" onClick={() => history.push("/team")}>
-            Команда
-          </span>
+          {Object.keys(buttonList).map((name) => (
+            <span
+              className="header-item"
+              onClick={() => history.push(buttonList[name])}
+            >
+              {name}
+            </span>
+          ))}
         </div>
         <div className="header-section">
           <span className="header-item" onClick={logout}>
