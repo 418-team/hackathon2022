@@ -57,7 +57,7 @@ function Header() {
   const history = useHistory();
 
   return (
-    <>
+    <div className="main_header">
       <div className="header-nav">
         <div className="header-section">
           <span className="header-item" onClick={() => history.push("/")}>
@@ -82,7 +82,7 @@ function Header() {
         </div>
       </div>
       <MobileHeader history={history} />
-    </>
+    </div>
   );
 }
 
