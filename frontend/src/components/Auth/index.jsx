@@ -143,9 +143,9 @@ function Auth() {
                onClick={() => onChangeView("login")}
             />
           </PopUp>
-          <PopUp title="Регистраниция" fields={registrationFields} open={authView === "registration"} >
+          <PopUp title="Регистрация" fields={registrationFields} open={authView === "registration"} >
             <Button
-                label="Присоедениться"
+                label="Присоединиться"
                 mode="secondary"
                 onClick={() => onChangeView("registration")}
             />
