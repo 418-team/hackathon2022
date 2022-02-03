@@ -33,9 +33,9 @@ function UserCard({ user }) {
           {user.last_name} {user.first_name}
         </h3>
         <div className="user_card__skills">
-          {user?.skills?.slice(0, 3)?.map((skill) => (
+          {user?.skills.length > 0 ? user?.skills?.slice(0, 3)?.map((skill) => (
             <span className="user_card__skill">{skill.title}</span>
-          ))}
+          )) : <span className="user_card__skill">Участник хакатона</span>}
         </div>
       </div>
       <div>
