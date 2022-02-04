@@ -121,19 +121,19 @@ function Auth() {
         <Logo />
         <div className="text_container">
           <h1>Хакатон «Программисты для программисты»</h1>
+          <p>Сделай жизнь проще себе и своим коллегам</p>
           <span className="prize">
             <Achievement />
-            Призовой фонд: 50000р
+            Призовой фонд: 100000р
           </span>
           <span className="prize">
             <BiGroup color="white" />
-            1-5 человек в команде
+            1 - 4 человек в команде
           </span>
           <span className="prize">
             <AiOutlineCalendar color="white" />
-            26 - 27 февраля, старт в 12:00
+            26 - 27 февраля, старт в 11:00
           </span>
-          <p>Сделай жизнь проще себе и своим коллегам</p>
         </div>
         <div className="btn_container">
          <PopUp title="Войти" fields={loginFields} open={authView === "login"}>

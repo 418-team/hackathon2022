@@ -17,11 +17,10 @@ function Greeting() {
         </span>
         <span className="prize">
           <Achievement />
-          Призовой фонд: 50000р
+          Призовой фонд: 100000р
         </span>
         <span className="prize">
-          <BiGroup color="white" />
-          1-5 человек в команде
+          <BiGroup color="white" />1 - 4 человек в команде
         </span>
         <span className="prize">
           <AiOutlineCalendar color="white" />
