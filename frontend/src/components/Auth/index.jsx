@@ -2,7 +2,7 @@
 
 import "./styles.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { BiGroup } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
@@ -16,29 +16,39 @@ import Logo from "./image/Logo";
 function Auth() {
   const [params, setParams] = useState({});
   const [authView, setAuthView] = useState(null);
+  const [error, setError] = useState(null);
   const history = useHistory();
 
   const submit = () => {
     if (authView === "login") {
-      auth(params.email, params.password)
-        .then((r) => {
-          localStorage.setItem("refresh_token", r.data.refresh_token);
-          localStorage.setItem("access_token", r.data.access_token);
-          localStorage.setItem(
-            "is_admin",
-            r.data.user.scopes.includes("admin").toString()
-          );
-          history.push("/");
-        })
-        .catch((err) => {
-          console.error("auth", err);
-        });
+      if (params?.email?.length > 0 && params?.password?.length > 0) {
+        auth(params.email, params.password)
+          .then((r) => {
+            localStorage.setItem("refresh_token", r.data.refresh_token);
+            localStorage.setItem("access_token", r.data.access_token);
+            localStorage.setItem(
+              "is_admin",
+              r.data.user.scopes.includes("admin").toString()
+            );
+            history.push("/");
+          })
+          .catch((err) => {
+            console.error("auth", err?.response.data);
+            if (err?.response.data?.error === "incorrect_login_or_password") {
+              setError("all");
+            }
+          });
+      } else {
+        setError(params.email.length > 0 ? "password" : "email")
+      }
     } else {
       registration(params).then(() => {
         setAuthView("login");
       });
     }
   };
+
+  useEffect(() => setError(null), [params])
 
   const onChangeView = (value) => {
     setAuthView(value);
@@ -56,6 +66,7 @@ function Auth() {
       value: params.email,
       key: "email",
       onChange,
+      error,
     },
     {
       type: "input",
@@ -64,6 +75,7 @@ function Auth() {
       value: params.password,
       key: "password",
       onChange,
+      error,
     },
     {
       type: "button",
@@ -136,18 +148,22 @@ function Auth() {
           </span>
         </div>
         <div className="btn_container">
-         <PopUp title="Войти" fields={loginFields} open={authView === "login"}>
+          <PopUp title="Войти" fields={loginFields} open={authView === "login"}>
             <Button
-               label="Войти"
-               mode="secondary"
-               onClick={() => onChangeView("login")}
+              label="Войти"
+              mode="secondary"
+              onClick={() => onChangeView("login")}
             />
           </PopUp>
-          <PopUp title="Регистрация" fields={registrationFields} open={authView === "registration"} >
+          <PopUp
+            title="Регистрация"
+            fields={registrationFields}
+            open={authView === "registration"}
+          >
             <Button
-                label="Присоединиться"
-                mode="secondary"
-                onClick={() => onChangeView("registration")}
+              label="Присоединиться"
+              mode="secondary"
+              onClick={() => onChangeView("registration")}
             />
           </PopUp>
         </div>

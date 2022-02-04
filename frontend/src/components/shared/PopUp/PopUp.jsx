@@ -40,7 +40,7 @@ function PopUpWindow({ bottom, left, title, inputs, buttons }) {
             type={input.button_type}
             onChange={(e) => input.onChange(input.key, e.target.value)}
             value={input.value}
-            mode="secondary"
+            mode={(input.error === input.key || input.error === "all") ? "error" : "secondary"}
           />
         ))}
         <div className="btn_container">

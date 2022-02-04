@@ -54,7 +54,7 @@ function App() {
         window.location.reload();
       }
       if (status !== 404) {
-        console.error("AXIOS Global Error", { status, message });
+        // console.error("AXIOS Global Error", { status, message });
       }
 
       return Promise.reject(error);

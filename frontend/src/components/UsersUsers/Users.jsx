@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from "react";
 
 import { invite as inviteApi, listForInvite } from "../../utils/api";
 import filter from "../../utils/search";
-import Button from "../shared/Button/Button";
+// import Button from "../shared/Button/Button";
 import Input from "../shared/Input/Input";
+import PopUp from "../shared/PopUp/PopUp";
 import useClickOutside from "../shared/useClickOutside";
 
 function UserCard({ user }) {
@@ -45,14 +46,16 @@ function UserCard({ user }) {
         </div>
       </div>
       <div>
-        <button
-          type="button"
-          className="user_card__invite_btn"
-          onClick={() => setOpenInviteView(!openInviteView)}
-        >
-          Пригласить
-        </button>
-        {openInviteView && (
+        <PopUp open={openInviteView}>
+          <button
+            type="button"
+            className="user_card__invite_btn"
+            onClick={() => setOpenInviteView(!openInviteView)}
+          >
+            Пригласить
+          </button>
+        </PopUp>
+        {/* {openInviteView && (
           <div className="create_invite_view" ref={inviteViewRef}>
             <Input
               mode="secondary"
@@ -66,7 +69,7 @@ function UserCard({ user }) {
               label="Отправить"
             />
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

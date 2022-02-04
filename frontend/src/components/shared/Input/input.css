@@ -4,7 +4,8 @@
     font-size: 1.2rem;
     border-radius: 8px;
     width: 100%;
-    background: rgba(0, 0, 0, 0.05)
+    background: rgba(0, 0, 0, 0.05);
+    border: .5px solid rgb(255, 255, 255);
 }
 
 .nh-input::placeholder {
@@ -34,6 +35,10 @@
 
 .nh-input.secondary::placeholder {
     color: #c8c8c8;
+}
+
+.nh-input.error {
+    border: .5px solid rgb(235, 0, 0);
 }
 
 .nh-input.primary.disabled {
