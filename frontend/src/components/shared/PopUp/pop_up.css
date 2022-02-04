@@ -43,6 +43,10 @@
         color: #24272a;
     }
 
+    .pop_up__wrapper .pop_up_form input {
+        color: #24272ab7;
+    }
+
     .pop_up__wrapper .pop_up_form input::placeholder {
         color: #24272ab7;
     }
