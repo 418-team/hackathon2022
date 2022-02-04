@@ -12,9 +12,10 @@ async function handler(req) {
   const result = (await req.pg.query(SQL, [b.user_id, b.message, user_id]))
     .rows[0];
 
+  console.log(b.user_id, b.message, user_id)
   console.error(result);
 
-  return Promise.resolve({ statusCode: 200, id: result.id });
+  return Promise.resolve({ statusCode: 200, id: result?.id });
 }
 
 const params = {

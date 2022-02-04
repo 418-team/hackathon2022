@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { createTeam } from "../../../utils/api";
-import ArrowButton from "../../shared/ArrowButton/ArrowButton";
-import PopUp from "../../shared/PopUp/PopUp";
+import { createTeam } from "../../../../utils/api";
+import ArrowButton from "../../../shared/ArrowButton/ArrowButton";
+import PopUp from "../../../shared/PopUp/PopUp";
 
 function Team({ team, getTeam }) {
   const [params, setParams] = useState({});
@@ -19,7 +19,7 @@ function Team({ team, getTeam }) {
   const teamField = [
     {
       type: "input",
-      placeholder: "Название команды",
+      placeholder: "Название команд",
       button_type: "input",
       value: params.name,
       key: "title",

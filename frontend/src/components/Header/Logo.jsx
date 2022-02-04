@@ -1,4 +1,4 @@
-export default function Logo({fill="white"}) {
+export default function Logo({ fill = "white" }) {
   return (
     <svg
       width="50"

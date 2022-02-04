@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Join from "../Join";
-import Main from "../UserMain";
-import { Cabinet } from "../UsersCabinet";
-import Team from "../UsersTeam/Team";
-import { Users } from "../UsersUsers";
+import { Cabinet } from "../UsersViews/Cabinet";
+import { Users } from "../UsersViews/FindUsers";
+import Main from "../UsersViews/Main";
+import Team from "../UsersViews/Team/Team";
 
 function AdminRouter() {
   return (

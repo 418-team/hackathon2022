@@ -12,6 +12,7 @@ async function handler(req) {
   const p = req.params;
   const result = (await req.pg.query(UpdateSQL, [user_id, p.id])).rows[0];
   await req.pg.query(DeleteSQL, [p.id]);
+  await req.pg.query(`update users set find_team = false where id=$1`, [user_id])
 
   return Promise.resolve({ statusCode: 200, id: result.id });
 }

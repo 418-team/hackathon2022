@@ -2,10 +2,10 @@ import "./team.css";
 
 import { useEffect, useState } from "react";
 
-import { createTeam, getMyTeam } from "../../utils/api";
-import ArrowButton from "../shared/ArrowButton/ArrowButton";
-import PopUp from "../shared/PopUp/PopUp";
-import { PlusIcon } from "../UsersCabinet/image/PlusIcon";
+import { createTeam, getMyTeam } from "../../../utils/api";
+import ArrowButton from "../../shared/ArrowButton/ArrowButton";
+import PopUp from "../../shared/PopUp/PopUp";
+import { PlusIcon } from "../Cabinet/image/PlusIcon";
 
 function Team() {
   const [params, setParams] = useState({});

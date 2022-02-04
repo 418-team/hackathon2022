@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import "./styles.css";
 
 import { useEffect, useState } from "react";
@@ -10,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import { auth, registration } from "../../utils/api";
 import Button from "../shared/Button/Button";
 import PopUp from "../shared/PopUp/PopUp";
-import Achievement from "../UserMain/components/Greeting/Achievement";
+import Achievement from "../UsersViews/Main/components/Greeting/Achievement";
 import Logo from "./image/Logo";
 
 function Auth() {
@@ -39,7 +37,7 @@ function Auth() {
             }
           });
       } else {
-        setError(params.email.length > 0 ? "password" : "email")
+        setError(params.email.length > 0 ? "password" : "email");
       }
     } else {
       registration(params).then(() => {
@@ -48,7 +46,7 @@ function Auth() {
     }
   };
 
-  useEffect(() => setError(null), [params])
+  useEffect(() => setError(null), [params]);
 
   const onChangeView = (value) => {
     setAuthView(value);
@@ -139,8 +137,7 @@ function Auth() {
             Призовой фонд: 100000р
           </span>
           <span className="prize">
-            <BiGroup color="white" />
-            1 - 4 человек в команде
+            <BiGroup color="white" />1 - 4 человек в команде
           </span>
           <span className="prize">
             <AiOutlineCalendar color="white" />

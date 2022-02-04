@@ -29,6 +29,14 @@ function PopUp({ fields, title, left = "-10rem", children, open }) {
 }
 
 function PopUpWindow({ bottom, left, title, inputs, buttons }) {
+  const onChange = (input, e) => {
+    if (input.key) {
+      input.onChange(input.key, e.target.value);
+    } else {
+      input.onChange(e);
+    }
+  };
+
   return (
     <div className="pop_up_form" style={{ bottom, left }}>
       <h3>{title}</h3>
@@ -38,9 +46,13 @@ function PopUpWindow({ bottom, left, title, inputs, buttons }) {
           <Input
             placeholder={input.placeholder}
             type={input.button_type}
-            onChange={(e) => input.onChange(input.key, e.target.value)}
+            onChange={(e) => onChange(input, e)}
             value={input.value}
-            mode={(input.error === input.key || input.error === "all") ? "error" : "secondary"}
+            mode={
+              input.error === input.key || input.error === "all"
+                ? "error"
+                : "secondary"
+            }
           />
         ))}
         <div className="btn_container">

@@ -2,7 +2,7 @@ import "./index.css";
 
 import { useEffect, useState } from "react";
 
-import { getMyTeam } from "../../utils/api";
+import { getMyTeam } from "../../../utils/api";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Cases from "./components/Cases/Cases";
 import Greeting from "./components/Greeting/Greeting";

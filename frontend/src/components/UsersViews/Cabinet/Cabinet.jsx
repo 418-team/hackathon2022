@@ -3,14 +3,17 @@ import "./cabinet.css";
 import { useEffect, useRef, useState } from "react";
 
 import {
+  acceptInvite as accept,
   addNewSkill,
   editUser,
   getMyTeam,
   getSkillsList,
-} from "../../utils/api";
-import { useStateCallback } from "../../utils/hooks";
-import filter from "../../utils/search";
-import useClickOutside from "../shared/useClickOutside";
+  rejectInvite as reject,
+} from "../../../utils/api";
+import { useStateCallback } from "../../../utils/hooks";
+import filter from "../../../utils/search";
+import useClickOutside from "../../shared/useClickOutside";
+import Invites from "./Invites/Invites";
 import Profile from "./Profile/Profile";
 import Team from "./Team/Team";
 
@@ -38,21 +41,21 @@ export default function Cabinet() {
     return () => setData(null);
   }, []);
 
-  // const rejectInvite = (id) => {
-  //   rejectHook(id).then(() => {
-  //     getMyTeamFunc();
-  //   });
-  // };
-  //
-  // const acceptInvite = (id) => {
-  //   acceptHook(id).then(() => {
-  //     getMyTeamFunc();
-  //   });
-  // }
+  const rejectInvite = (id) => {
+    reject(id).then(() => {
+      getMyTeamFunc();
+    });
+  };
 
-  const team = data?.teams?.length > 0 ? data?.teams[0] : false;
-  // const invites = data?.invites.length > 0 ? data?.invites : false;
-  const profile = data?.profile?.profile ? data?.profile?.profile : false;
+  const acceptInvite = (id) => {
+    accept(id).then(() => {
+      getMyTeamFunc();
+    });
+  };
+
+  const team = data?.teams?.length > 0 ? data?.teams[0] : null;
+  const invites = data?.invites.length > 0 ? data?.invites : null;
+  const profile = data?.profile?.profile ? data?.profile?.profile : null;
   const skills = data?.skills?.length > 0 ? data.skills : [];
 
   const set = (state) => {
@@ -137,6 +140,7 @@ export default function Cabinet() {
         <h2>Личный кабинет</h2>
       </div>
       <Profile
+        team={team}
         profile={profile}
         skills={skills}
         setIsInputFocus={setIsInputFocus}
@@ -151,6 +155,13 @@ export default function Cabinet() {
         onChangeFindTeam={onChangeFindTeam}
       />
       <Team team={team} getTeam={getMyTeamFunc} />
+      {!team && (
+        <Invites
+          invites={invites}
+          onAccept={acceptInvite}
+          onReject={rejectInvite}
+        />
+      )}
     </div>
   );
 }
