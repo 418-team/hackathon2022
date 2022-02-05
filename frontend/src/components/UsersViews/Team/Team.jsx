@@ -65,7 +65,7 @@ function Team() {
   return (
     <div className="section-cabinet">
       <div className="header">
-        <h2>Кабинет команды</h2>
+        <h2>Команда</h2>
       </div>
       {team ? (
         <div className="team">

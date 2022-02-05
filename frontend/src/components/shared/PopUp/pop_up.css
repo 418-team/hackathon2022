@@ -29,6 +29,44 @@
     margin-left: 0.5rem;
 }
 
+@media screen and (max-width: 801px) {
+    .pop_up__wrapper .pop_up_form {
+        position: fixed;
+        z-index: 10000;
+        background: #ffffff;
+        left: 1rem !important;
+        bottom: 0 !important;
+        width: calc(100vw - 2rem);
+        border-radius: 2rem 2rem 0 0 !important;
+        backdrop-filter: blur(50px);
+        box-shadow: 0 3px 15px 20px rgba(0,0,0,0.05);
+    }
+
+    .pop_up__wrapper .pop_up_form hr {
+        background-color: #24272a18;
+    }
+
+    .pop_up__wrapper .pop_up_form h3 {
+        color: #24272a;
+    }
+
+    .pop_up__wrapper .pop_up_form input {
+        color: #24272ab7;
+    }
+
+    .pop_up__wrapper .pop_up_form input::placeholder {
+        color: #24272ab7;
+    }
+
+    .pop_up__wrapper .pop_up_form .btn_container button.secondary {
+        background: #24272a;
+        color: #ffffff;
+    }
+
+    .pop_up__wrapper .pop_up_form .btn_container button.secondary:hover {
+        background: #1c1e20;
+    }
+}
 
 @supports not (backdrop-filter: none) {
     .pop_up__wrapper .pop_up_form {

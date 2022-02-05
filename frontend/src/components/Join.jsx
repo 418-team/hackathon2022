@@ -9,7 +9,7 @@ function Join(props) {
 
   useEffect(() => {
     join(code).then(() => {
-      return history.push("/cabinet");
+      return history.push("/team");
     });
   }, []);
 

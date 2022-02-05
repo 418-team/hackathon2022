@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 
-function PopUp({ fields, title, left = "-10rem", children, open }) {
+function PopUp({ fields, title, children, open }) {
   const inputs = fields.filter((f) => f.type === "input");
   const buttons = fields.filter((f) => f.type === "button");
   const childrenRef = useRef(null);
@@ -18,7 +18,6 @@ function PopUp({ fields, title, left = "-10rem", children, open }) {
         <PopUpWindow
           title={title}
           bottom={bottom}
-          left={left}
           inputs={inputs}
           buttons={buttons}
         />

@@ -86,3 +86,9 @@
 .login_view .btn_container {
     text-align: center;
 }
+
+@media screen and (max-width: 768px){
+    .auth_container > div.greeting {
+        padding: 3rem 2rem;
+    }
+}
