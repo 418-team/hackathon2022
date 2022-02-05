@@ -9,6 +9,7 @@ import { auth, registration } from "../../utils/api";
 import Button from "../shared/Button/Button";
 import PopUp from "../shared/PopUp/PopUp";
 import Achievement from "../UsersViews/Main/components/Greeting/Achievement";
+import GoldCarrotLogo from "./image/GoldCarrot";
 import Logo from "./image/Logo";
 
 function Auth() {
@@ -128,21 +129,27 @@ function Auth() {
   return (
     <div className="auth_container">
       <div className="greeting">
-        <Logo />
-        <div className="text_container">
-          <h1>Хакатон «Dev to Dev»</h1>
-          <p>Сделай жизнь проще себе и своим коллегам</p>
-          <span className="prize">
-            <Achievement />
-            Призовой фонд: 100000р
-          </span>
-          <span className="prize">
-            <BiGroup color="white" />1 - 4 человек в команде
-          </span>
-          <span className="prize">
-            <AiOutlineCalendar color="white" />
-            26 - 27 февраля, старт в 11:00
-          </span>
+        <div className="greeting_content">
+          <Logo />
+          <div className="text_container">
+            <h1>Хакатон «Dev to Dev»</h1>
+            <p>Сделай жизнь проще себе и своим коллегам</p>
+            <span className="prize">
+              <Achievement />
+              Призовой фонд: 100000р
+            </span>
+            <span className="prize">
+              <BiGroup color="white" />1 - 4 человек в команде
+            </span>
+            <span className="prize">
+              <AiOutlineCalendar color="white" />
+              26 - 27 февраля, старт в 11:00
+            </span>
+            <div className="sponsors_section">
+                <GoldCarrotLogo />
+                <GoldCarrotLogo />
+            </div>
+          </div>
         </div>
         <div className="btn_container">
           <PopUp title="Войти" fields={loginFields} open={authView === "login"}>
