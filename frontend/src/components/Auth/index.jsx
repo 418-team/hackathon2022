@@ -34,7 +34,7 @@ function Auth() {
           .catch((err) => {
             console.error("auth", err?.response.data);
             if (err?.response.data?.error === "incorrect_login_or_password") {
-              setError("all");
+              setError(err?.response.data?.message);
             }
           });
       } else {
@@ -43,6 +43,11 @@ function Auth() {
     } else {
       registration(params).then(() => {
         setAuthView("login");
+      }).catch((err) => {
+        console.log('reg', err?.response.data)
+          if (err?.response.data?.error === "already_exists") {
+            setError(err?.response.data?.message);
+          }
       });
     }
   };
@@ -96,6 +101,7 @@ function Auth() {
       value: params.email,
       key: "email",
       onChange,
+      error,
     },
     {
       type: "input",
@@ -104,6 +110,7 @@ function Auth() {
       value: params.name,
       key: "name",
       onChange,
+      error,
     },
     {
       type: "input",
@@ -112,6 +119,7 @@ function Auth() {
       value: params.password,
       key: "password",
       onChange,
+      error,
     },
     {
       type: "button",

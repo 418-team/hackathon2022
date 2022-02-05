@@ -9,7 +9,6 @@ function PopUp({ fields, title, children, open }) {
   const inputs = fields.filter((f) => f.type === "input");
   const buttons = fields.filter((f) => f.type === "button");
   const childrenRef = useRef(null);
-
   const bottom = (childrenRef?.current?.offsetHeight || 0) + 10;
 
   return (
@@ -28,6 +27,8 @@ function PopUp({ fields, title, children, open }) {
 }
 
 function PopUpWindow({ bottom, left, title, inputs, buttons }) {
+  const error = useRef();
+
   const onChange = (input, e) => {
     if (input.key) {
       input.onChange(input.key, e.target.value);
@@ -40,20 +41,22 @@ function PopUpWindow({ bottom, left, title, inputs, buttons }) {
     <div className="pop_up_form" style={{ bottom, left }}>
       <h3>{title}</h3>
       <hr />
+      {error.current && <span className="pop_up_form__text_error">
+        {error.current || ""}
+      </span>}
       <div>
-        {inputs.map((input) => (
-          <Input
-            placeholder={input.placeholder}
-            type={input.button_type}
-            onChange={(e) => onChange(input, e)}
-            value={input.value}
-            mode={
-              input.error === input.key || input.error === "all"
-                ? "error"
-                : "secondary"
-            }
-          />
-        ))}
+        {inputs.map((input) => {
+          if (input?.error) error.current = input.error;
+          return (
+            <Input
+              placeholder={input.placeholder}
+              type={input.button_type}
+              onChange={(e) => onChange(input, e)}
+              value={input.value}
+              mode={input?.error ? "error" : "secondary"}
+            />
+          );
+        })}
         <div className="btn_container">
           {buttons.map((button) => (
             <Button

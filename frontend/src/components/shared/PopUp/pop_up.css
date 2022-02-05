@@ -16,6 +16,11 @@
     margin: 0 0;
 }
 
+.pop_up_form__text_error {
+    font-size: 1.2rem;
+    color: rgb(235, 0, 0);
+}
+
 .pop_up__wrapper .pop_up_form input {
     margin-bottom: 0.8rem;
     color: white;
