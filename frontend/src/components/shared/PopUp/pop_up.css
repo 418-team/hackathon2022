@@ -63,6 +63,15 @@
         color: #ffffff;
     }
 
+    .pop_up__wrapper .pop_up_form .btn_container button {
+        width: 100%;
+        margin-bottom: 0.3rem;
+    }
+
+    .pop_up__wrapper .pop_up_form .btn_container {
+        flex-direction: column;
+    }
+
     .pop_up__wrapper .pop_up_form .btn_container button.secondary:hover {
         background: #1c1e20;
     }
