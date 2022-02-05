@@ -18,9 +18,19 @@ function Auth() {
   const [error, setError] = useState(null);
   const history = useHistory();
 
+  useEffect(() => setError(null), [params, authView]);
+
+  const setErrorItem = (data, global = false) => {
+    setError({ data, global });
+  };
+
+  const validateInputs = () => {
+    return Object.keys(params).every((item) => params[item].length > 0);
+  }
+
   const submit = () => {
     if (authView === "login") {
-      if (params?.email?.length > 0 && params?.password?.length > 0) {
+      if (validateInputs()) {
         auth(params.email, params.password)
           .then((r) => {
             localStorage.setItem("refresh_token", r.data.refresh_token);
@@ -34,28 +44,29 @@ function Auth() {
           .catch((err) => {
             console.error("auth", err?.response.data);
             if (err?.response.data?.error === "incorrect_login_or_password") {
-              setError(err?.response.data?.message);
+              setErrorItem(err?.response.data?.message, true);
             }
           });
       } else {
-        setError(params.email.length > 0 ? "password" : "email");
+        setErrorItem(params.email.length > 0 ? "password" : "email");
       }
     } else {
-      registration(params).then(() => {
-        setAuthView("login");
-      }).catch((err) => {
-        console.log('reg', err?.response.data)
-          if (err?.response.data?.error === "already_exists") {
-            setError(err?.response.data?.message);
-          }
-      });
+      console.log('reg')
+      if (validateInputs()) {
+        registration(params)
+          .then(() => {
+            setAuthView("login");
+          })
+          .catch((err) => {
+            if (err?.response.data?.error === "already_exists") {
+              setErrorItem(err?.response.data?.message, true);
+            }
+          });
+      } else {
+        const invalidInputs = Object.keys(params).filter((item) => params[item].length === 0 && item);
+        setErrorItem(invalidInputs.length === Object.keys(params).length ? 'all' : invalidInputs[0]);
+      }
     }
-  };
-
-  useEffect(() => setError(null), [params]);
-
-  const onChangeView = (value) => {
-    setAuthView(value);
   };
 
   const onChange = (k, v) => {
@@ -90,7 +101,7 @@ function Auth() {
     {
       type: "button",
       label: "Отменить",
-      onClick: () => onChangeView(null),
+      onClick: () => setAuthView(null),
     },
   ];
   const registrationFields = [
@@ -130,7 +141,7 @@ function Auth() {
     {
       type: "button",
       label: "Отменить",
-      onClick: () => onChangeView(null),
+      onClick: () => setAuthView(null),
     },
   ];
 
@@ -154,8 +165,8 @@ function Auth() {
               26 - 27 февраля, старт в 11:00
             </span>
             <div className="sponsors_section">
-                <GoldCarrotLogo />
-                <GoldCarrotLogo />
+              <GoldCarrotLogo />
+              <GoldCarrotLogo />
             </div>
           </div>
         </div>
@@ -164,7 +175,7 @@ function Auth() {
             <Button
               label="Войти"
               mode="secondary"
-              onClick={() => onChangeView("login")}
+              onClick={() => setAuthView("login")}
             />
           </PopUp>
           <PopUp
@@ -175,7 +186,7 @@ function Auth() {
             <Button
               label="Присоединиться"
               mode="secondary"
-              onClick={() => onChangeView("registration")}
+              onClick={() => setAuthView("registration")}
             />
           </PopUp>
         </div>

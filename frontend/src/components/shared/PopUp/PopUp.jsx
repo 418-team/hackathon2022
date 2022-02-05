@@ -27,7 +27,7 @@ function PopUp({ fields, title, children, open }) {
 }
 
 function PopUpWindow({ bottom, left, title, inputs, buttons }) {
-  const error = useRef();
+  const error = useRef(null);
 
   const onChange = (input, e) => {
     if (input.key) {
@@ -36,24 +36,33 @@ function PopUpWindow({ bottom, left, title, inputs, buttons }) {
       input.onChange(e);
     }
   };
-
+  // console.log('error.current', error.current, !error.current?.global)
   return (
     <div className="pop_up_form" style={{ bottom, left }}>
       <h3>{title}</h3>
       <hr />
-      {error.current && <span className="pop_up_form__text_error">
-        {error.current || ""}
-      </span>}
+      {error.current?.data && error.current?.global && (
+        <span className="pop_up_form__text_error">
+          {error.current?.data || "Ошибка"}
+        </span>
+      )}
       <div>
         {inputs.map((input) => {
-          if (input?.error) error.current = input.error;
+          if (input?.error){
+             error.current = input.error
+             console.log('input.error', input.error)
+          };
           return (
             <Input
               placeholder={input.placeholder}
               type={input.button_type}
               onChange={(e) => onChange(input, e)}
               value={input.value}
-              mode={input?.error ? "error" : "secondary"}
+              mode={
+                input?.error?.global || input?.error?.data === input.key || input?.error?.data === 'all'
+                  ? "error"
+                  : "secondary"
+              }
             />
           );
         })}
