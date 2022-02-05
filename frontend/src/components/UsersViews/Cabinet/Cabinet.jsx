@@ -134,6 +134,12 @@ export default function Cabinet() {
     set((prev) => ({ ...prev, profile: { profile: _profile } }));
   };
 
+  const onChangePhoto = (url) => {
+    const _profile = { ...profile };
+    _profile.avatar_url = url;
+    set((prev) => ({ ...prev, profile: { profile: _profile } }));
+  };
+
   return (
     <div className="section-cabinet">
       <div className="header">
@@ -153,6 +159,7 @@ export default function Cabinet() {
         onAddSkill={onAddSkill}
         onNewAddSkill={onNewAddSkill}
         onChangeFindTeam={onChangeFindTeam}
+        onChangePhoto={onChangePhoto}
       />
       <Team team={team} getTeam={getMyTeamFunc} />
       {!team && (

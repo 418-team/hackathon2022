@@ -24,10 +24,14 @@ function Profile({
   onNewAddSkill,
   onAddSkill,
   onChangeFindTeam,
+  onChangePhoto,
 }) {
   return (
     <div className="profile">
-      <ProfileImage background={profile?.image_url} />
+      <ProfileImage
+        background={profile?.avatar_url}
+        onChangePhoto={onChangePhoto}
+      />
       <div className="profile_info">
         <p className="profile_info_name">
           {profile?.first_name} {profile?.last_name}
@@ -83,17 +87,23 @@ function Profile({
   );
 }
 
-function ProfileImage({ background }) {
+function ProfileImage({ background, onChangePhoto }) {
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
   const buttonRef = useRef(null);
   const previewCanvasRef = useRef(null);
-  const [crop, setCrop] = useState({ unit: "%", width: 40, aspect: 1, x: 25, y: 25 });
+  const [crop, setCrop] = useState({
+    unit: "%",
+    width: 40,
+    aspect: 1,
+    x: 25,
+    y: 25,
+  });
   const [completedCrop, setCompletedCrop] = useState(null);
   const { getRootProps, getInputProps, open } = useDropzone({
     noClick: true,
     noKeyboard: true,
-    accept: 'image/*',
+    accept: "image/*",
     onDrop: (acceptedFiles) => {
       setUpImg(() => {
         const reader = new FileReader();
@@ -113,17 +123,15 @@ function ProfileImage({ background }) {
   }, []);
 
   const onSaveImage = (canvas, _crop) => {
-    console.log(canvas);
     if (!_crop || !canvas) {
       return;
     }
     canvas.toBlob((blob) => {
-      console.log("blob", blob);
       const fd = new FormData();
       fd.append("file", blob);
 
       uploadImage(fd).then((res) => {
-        console.log(res);
+        onChangePhoto(res.data.url);
       });
     });
   };

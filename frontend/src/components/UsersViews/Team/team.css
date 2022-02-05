@@ -45,17 +45,16 @@
     margin-top: 0.5rem;
     border-radius: 0.8rem;
 }
-
 .item {
-    height: 600px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     flex-grow: 1;
     border-radius: 0.8rem;
     padding: 1em;
-    width: 30em;
-    margin: 0.5em;
+    width: 50em;
+    min-height: 50em;
+    margin: 1em;
     cursor: pointer;
     position: relative;
 }
@@ -68,15 +67,16 @@
     flex-grow: 1;
     border-radius: 0.8rem;
     padding: 2em;
-    width: 30em;
-    margin: 0.5em;
+    width: 50em;
+    min-height: 50em;
+    margin: 1em;
     cursor: pointer;
     position: relative;
 }
 
 @media (max-width: 1000px) {
-    .item {
-        height: 400px;
+    .section .item {
+        min-height: 50em;
     }
 }
 
@@ -181,6 +181,9 @@
 @media screen and (max-width: 694px){
     .projects:nth-child(3) {
         flex-wrap: wrap-reverse;
+    }
+    .information_item {
+        min-height: 10px;
     }
 }
 

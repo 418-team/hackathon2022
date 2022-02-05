@@ -121,7 +121,11 @@ function Team() {
 function RenderParticipantGrid({ index, participant }) {
   return index % 2 === 1 ? (
     <>
-      <TeamMemberCard background="https://cdn.418.one/team/vlad@1x.jpg" />
+      <TeamMemberCard
+        background={
+          participant.avatar_url || "https://cdn.418.one/images/placeholder.png"
+        }
+      />
       <TeamMemberInformation
         name={`${participant.first_name}  ${participant.last_name}`}
         email={participant.email}
@@ -135,7 +139,11 @@ function RenderParticipantGrid({ index, participant }) {
         email={participant.email}
         tags={participant.skills}
       />
-      <TeamMemberCard background="https://cdn.418.one/team/vlad@1x.jpg" />
+      <TeamMemberCard
+        background={
+          participant.avatar_url || "https://cdn.418.one/images/placeholder.png"
+        }
+      />
     </>
   );
 }

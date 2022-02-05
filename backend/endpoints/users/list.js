@@ -1,6 +1,6 @@
 async function handler(req) {
   const { rows } = await req.pg.query(
-    "SELECT id, email, first_name, last_name, patronymic, scopes FROM users ORDER BY id DESC"
+    "SELECT id, email, first_name, last_name, patronymic, scopes, created_at, avatar_url, find_team FROM users ORDER BY id DESC"
   );
   return Promise.resolve({ statusCode: 200, rows });
 }

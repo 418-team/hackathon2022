@@ -20,8 +20,8 @@
     flex-grow: 1;
     border-radius: 1em;
     padding: 2em;
-    width: 30em;
-    margin: 0.5em;
+    width: 30rem;
+    margin: 1em;
     position: relative;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .item {
-    height: 600px;
+    background-color: #EBEBEB;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -111,7 +111,7 @@
     border-radius: 0.8rem;
     padding: 1em;
     width: 30em;
-    margin: 0.5em;
+    margin: 1rem;
     cursor: pointer;
     position: relative;
 }
@@ -121,6 +121,7 @@
     border-radius: 0.4rem;
     border: 1px dashed #00A5AA;
     color: #24272A;
+    height: 100%;
     padding: 1rem 2rem;
 }
 

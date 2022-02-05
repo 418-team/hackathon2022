@@ -22,7 +22,7 @@ async function handler(req) {
                 (
                     SELECT coalesce(json_agg(p3), '[]'::json)
                     FROM (
-                        SELECT u2.id, u2.first_name, u2.email, u2.last_name, 
+                        SELECT u2.id, u2.first_name, u2.email, u2.last_name, u2.avatar_url,
                         (
                             SELECT coalesce(json_agg(skl1), '[]'::json)
                             FROM (SELECT * FROM users_skills us left join skills s on s.id = us.skill_id WHERE us.user_id = u2.id) skl1

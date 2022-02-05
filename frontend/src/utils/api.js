@@ -2,16 +2,18 @@ import axios from "axios";
 
 const dropRequest = (value) => {
   return Promise.reject(value);
-}
+};
 
 const validateValue = (data, key, value) => {
-  return !data[key] || (key === value && !data[key].match(/.+@.+/))
-}
+  return !data[key] || (key === value && !data[key].match(/.+@.+/));
+};
 
 // OAuth
 export async function auth(username, password) {
   const data = { username, password };
-  const invalidInputs = Object.keys(data).filter((key) => validateValue(data, key, 'username'));
+  const invalidInputs = Object.keys(data).filter((key) =>
+    validateValue(data, key, "username")
+  );
   if (invalidInputs.length > 0) {
     return dropRequest([...invalidInputs]);
   }
@@ -27,13 +29,15 @@ export async function registration(body) {
     name: body.name,
   };
 
-  const invalidInputs = Object.keys(data).filter((key) => validateValue(data, key, 'email'));
+  const invalidInputs = Object.keys(data).filter((key) =>
+    validateValue(data, key, "email")
+  );
   if (invalidInputs.length > 0) {
     return dropRequest([...invalidInputs]);
   }
 
   const [first_name, last_name] = body.name.split(" ");
-  if (!first_name || !last_name) return dropRequest(['name'])
+  if (!first_name || !last_name) return dropRequest(["name"]);
   data = { ...data, first_name: first_name || "", last_name: last_name || "" };
   delete data.name;
 
@@ -140,6 +144,11 @@ export const getUnitsApi = async (id) => {
 
 export const getUsers = async () => {
   const result = await axios.get("/users/list");
+  return result;
+};
+
+export const getTeams = async () => {
+  const result = await axios.get("/teams/list");
   return result;
 };
 

@@ -1,0 +1,66 @@
+.table {
+    padding: 2rem;
+}
+
+.info_section {
+    margin: 1rem 2rem;
+}
+
+.table {
+    max-height: 30vh;
+    overflow: auto;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 1rem;
+}
+
+.table p {
+    margin: 0.5rem 0;
+}
+
+.users .table .table_header .row {
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid #ececec;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.users .table .table_data .row {
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid #ececec;
+}
+
+.teams .table .table_header .row {
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid #ececec;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.teams .table .table_data .row {
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid #ececec;
+}
+
+.skills .table .table_header .row {
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 1fr;
+    border-bottom: 1px solid #ececec;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.skills .table .table_data .row {
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 1fr;
+    border-bottom: 1px solid #ececec;
+}

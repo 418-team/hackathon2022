@@ -21,16 +21,17 @@ async function handler(req) {
     req.body.skills
   );
 
-  await await req.pg.query(
-    "UPDATE users SET first_name=$2, last_name=$3, patronymic=$4, email=$5, find_team=$6  WHERE id=$1",
-    [
-      req.params.id,
-      req.body.first_name,
-      req.body.last_name,
-      req.body.patronymic,
-      req.body.email,
-      req.body.find_team,
-    ]
+  await req.pg.query(
+      "UPDATE users SET first_name=$2, last_name=$3, patronymic=$4, email=$5, find_team=$6, avatar_url=$7  WHERE id=$1",
+      [
+        req.params.id,
+        req.body.first_name,
+        req.body.last_name,
+        req.body.patronymic,
+        req.body.email,
+        req.body.find_team,
+        req.body.avatar_url
+      ]
   );
 
   return Promise.resolve({ statusCode: 200 });
