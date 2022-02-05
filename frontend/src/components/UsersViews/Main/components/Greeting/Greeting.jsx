@@ -10,7 +10,7 @@ function Greeting() {
   return (
     <section className="section-greeting">
       <h1 className="greeting">
-        <span>Хакатон «Программисты для программисты»</span>
+        <span>Хакатон «Dev to Dev»</span>
         <span className="bottom_text">
           Сделай жизнь проще себе и своим коллегам
           <Circle size="2.0rem" className="circle" />

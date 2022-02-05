@@ -130,7 +130,7 @@ function Auth() {
       <div className="greeting">
         <Logo />
         <div className="text_container">
-          <h1>Хакатон «Программисты для программисты»</h1>
+          <h1>Хакатон «Dev to Dev»</h1>
           <p>Сделай жизнь проще себе и своим коллегам</p>
           <span className="prize">
             <Achievement />
