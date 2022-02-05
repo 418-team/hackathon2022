@@ -66,6 +66,7 @@
     .pop_up__wrapper .pop_up_form .btn_container button {
         width: 100%;
         margin-bottom: 0.3rem;
+        justify-content: center;
     }
 
     .pop_up__wrapper .pop_up_form .btn_container {
