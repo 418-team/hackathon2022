@@ -27,13 +27,14 @@
 }
 
 .button_classic.primary {
-    background: transparent;
-    border: 1px solid #6D6E72;
+    background: #cdcdcd;
     box-sizing: border-box;
 }
 
 .button_classic.secondary {
-    background: white;
+    background: transparent;
+    border: 1px solid #6D6E72;
+    box-sizing: border-box;
 }
 
 .button_classic svg {
@@ -46,32 +47,11 @@
 }
 
 .button_classic.primary:hover {
-    background: #DEDEDE;
+    background: #e0e0e0;
 }
 
 .button_classic.secondary:hover {
-    background: #dcdcdc;
-}
-
-
-.button_classic.primary:active {
-    background: #cdcdcd;
-}
-
-.button_classic.secondary:active {
-    background: #cdcdcd;
-}
-
-.button_classic.secondary:hover {
-    background-color: #eeeeee
-}
-
-.button_classic.primary:hover {
-    background-color: rgba(239, 239, 239, 0.1);
-}
-
-.button_classic:active {
-    background-color: #dcdcdc;
+    background-color: #f6f6f6
 }
 
 @media (max-width: 961px) {

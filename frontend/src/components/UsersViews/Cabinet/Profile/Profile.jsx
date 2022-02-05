@@ -1,5 +1,11 @@
 import "./profile.css";
+import "react-image-crop/dist/ReactCrop.css";
 
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import ReactCrop from "react-image-crop";
+
+import Button from "../../../shared/Button/Button";
 import { Checkbox } from "../../../shared/Checkbox/CheckBox";
 import Input from "../../../shared/Input/Input";
 
@@ -20,7 +26,7 @@ function Profile({
 }) {
   return (
     <div className="profile">
-      <ProfileImage background="https://cdn.418.one/team/vlad@1x.jpg" />
+      <ProfileImage background={profile?.image_url} />
       <div className="profile_info">
         <p className="profile_info_name">
           {profile?.first_name} {profile?.last_name}
@@ -77,12 +83,110 @@ function Profile({
 }
 
 function ProfileImage({ background }) {
+  const [upImg, setUpImg] = useState();
+  const imgRef = useRef(null);
+  const buttonRef = useRef(null);
+  const previewCanvasRef = useRef(null);
+  const [crop, setCrop] = useState({ unit: "%", width: 30, aspect: 1 });
+  const [completedCrop, setCompletedCrop] = useState(null);
+  const { getRootProps, getInputProps, open } = useDropzone({
+    noClick: true,
+    noKeyboard: true,
+    onDrop: (acceptedFiles) => {
+      setUpImg(() => {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => setUpImg(reader.result));
+        reader.readAsDataURL(acceptedFiles[0]);
+      });
+    },
+  });
+
   const style = {
     background: `url("${background}") no-repeat center`,
     backgroundSize: "cover",
   };
 
-  return <div className="item" style={style} />;
+  const onLoad = useCallback((img) => {
+    imgRef.current = img;
+  }, []);
+
+  useEffect(() => {
+    if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
+      return;
+    }
+
+    const image = imgRef.current;
+    const canvas = previewCanvasRef.current;
+    const _crop = completedCrop;
+
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    const ctx = canvas.getContext("2d");
+    const pixelRatio = window.devicePixelRatio;
+
+    canvas.width = _crop.width * pixelRatio * scaleX;
+    canvas.height = _crop.height * pixelRatio * scaleY;
+
+    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    ctx.imageSmoothingQuality = "high";
+
+    ctx.drawImage(
+      image,
+      _crop.x * scaleX,
+      _crop.y * scaleY,
+      _crop.width * scaleX,
+      _crop.height * scaleY,
+      0,
+      0,
+      _crop.width * scaleX,
+      _crop.height * scaleY
+    );
+  }, [completedCrop]);
+
+  return background ? (
+    <div className="item" style={style} />
+  ) : (
+    <div className="item">
+      <div
+        {...getRootProps({ className: "dropzone" })}
+        onClick={() => buttonRef.current.click()}
+      >
+        <input {...getInputProps()} />
+        <p>Перенесите или выберите свое фото</p>
+        <button
+          type="button"
+          style={{ opacity: 0, visibility: "hidden", position: "absolute" }}
+          ref={buttonRef}
+          onClick={open}
+        >
+          button
+        </button>
+      </div>
+      {upImg && (
+        <div className="image-preview__wrapper">
+          <div className="image-preview__image">
+            <ReactCrop
+              src={upImg}
+              onImageLoaded={onLoad}
+              crop={crop}
+              onChange={(c) => {
+                setCrop(() => ({ ...c, aspect: 1 }));
+              }}
+              onComplete={(c) => setCompletedCrop(c)}
+            />
+            <div className="image-preview__btn_container">
+              <Button mode="primary" label="Сохранить" onClick={() => {}} />
+              <Button
+                mode="secondary"
+                label="Отменить"
+                onClick={() => setUpImg(null)}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default Profile;

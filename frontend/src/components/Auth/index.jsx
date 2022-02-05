@@ -40,7 +40,10 @@ function Auth() {
           console.error("auth err:", err);
           if (Array.isArray(err)) {
             setErrorItem(err);
-          } else if (err?.response && err?.response.data?.error === "incorrect_login_or_password") {
+          } else if (
+            err?.response &&
+            err?.response.data?.error === "incorrect_login_or_password"
+          ) {
             setErrorItem(err?.response.data?.message, true);
           }
         });
@@ -54,7 +57,10 @@ function Auth() {
           console.error("reg err:", err);
           if (Array.isArray(err)) {
             setErrorItem(err);
-          } else if (err?.response && err?.response.data?.error === "already_exists") {
+          } else if (
+            err?.response &&
+            err?.response.data?.error === "already_exists"
+          ) {
             setErrorItem(err?.response.data?.message, true);
           }
         });
@@ -86,12 +92,12 @@ function Auth() {
     },
     {
       type: "button",
-      mode: "secondary",
       label: "Войти",
       onClick: submit,
     },
     {
       type: "button",
+      mode: "secondary",
       label: "Отменить",
       onClick: () => setAuthView(null),
     },
@@ -126,12 +132,12 @@ function Auth() {
     },
     {
       type: "button",
-      mode: "secondary",
       label: "Присоедениться",
       onClick: submit,
     },
     {
       type: "button",
+      mode: "secondary",
       label: "Отменить",
       onClick: () => setAuthView(null),
     },
@@ -163,10 +169,15 @@ function Auth() {
           </div>
         </div>
         <div className="btn_container">
-          <PopUp title="Войти" fields={loginFields} open={authView === "login"} error={error}>
+          <PopUp
+            title="Войти"
+            fields={loginFields}
+            open={authView === "login"}
+            error={error}
+          >
             <Button
               label="Войти"
-              mode="secondary"
+              mode="primary"
               onClick={() => setAuthView("login")}
             />
           </PopUp>
@@ -178,7 +189,7 @@ function Auth() {
           >
             <Button
               label="Присоединиться"
-              mode="secondary"
+              mode="primary"
               onClick={() => setAuthView("registration")}
             />
           </PopUp>

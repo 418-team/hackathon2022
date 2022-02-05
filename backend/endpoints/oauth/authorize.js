@@ -2,7 +2,7 @@ const { createHash, createSession } = require("../../utils/security");
 
 const INCORRECT_CREDS_ERROR = {
   statusCode: 403,
-  message: "Неверный логин или пароль",
+  message: "Неверный email или пароль",
   error: "incorrect_login_or_password",
 };
 

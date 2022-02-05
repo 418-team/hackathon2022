@@ -16,7 +16,7 @@ async function handler(req) {
     return Promise.reject({
       statusCode: 400,
       error: "already_exists",
-      message: "Пользователь уже существует",
+      message: "Пользователь c таким email уже существует",
     });
 
   const result = (
@@ -29,7 +29,6 @@ async function handler(req) {
       ["user"],
     ])
   ).rows[0];
-  console.log(result);
 
   return Promise.resolve({ statusCode: 200, id: result.id });
 }
