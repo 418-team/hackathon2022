@@ -159,6 +159,14 @@ export const putCheckList = async (id, checklistId, data) => {
   return result;
 };
 
+export const uploadImage = async (body) => {
+  const result = await axios.post(
+    `https://6f28-94-41-65-26.eu.ngrok.io/upload/link1`,
+    body
+  );
+  return result;
+};
+
 export const postNewType = async (value) => {
   const result = await axios.post("/types/create", { title: value });
   return result;

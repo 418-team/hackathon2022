@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import ReactCrop from "react-image-crop";
 
+import { uploadImage } from "../../../../utils/api";
 import Button from "../../../shared/Button/Button";
 import { Checkbox } from "../../../shared/Checkbox/CheckBox";
 import Input from "../../../shared/Input/Input";
@@ -110,6 +111,22 @@ function ProfileImage({ background }) {
     imgRef.current = img;
   }, []);
 
+  const onSaveImage = (canvas, _crop) => {
+    console.log(canvas);
+    if (!_crop || !canvas) {
+      return;
+    }
+    canvas.toBlob((blob) => {
+      console.log("blob", blob);
+      const fd = new FormData();
+      fd.append("file", blob);
+
+      uploadImage(fd).then((res) => {
+        console.log(res);
+      });
+    });
+  };
+
   useEffect(() => {
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
       return;
@@ -174,8 +191,24 @@ function ProfileImage({ background }) {
               }}
               onComplete={(c) => setCompletedCrop(c)}
             />
+            <canvas
+              ref={previewCanvasRef}
+              // Rounding is important so the canvas width and height matches/is a multiple for sharpness.
+              style={{
+                width: Math.round(completedCrop?.width ?? 0),
+                height: Math.round(completedCrop?.height ?? 0),
+                position: "absolute",
+                visibility: "hidden",
+              }}
+            />
             <div className="image-preview__btn_container">
-              <Button mode="primary" label="Сохранить" onClick={() => {}} />
+              <Button
+                mode="primary"
+                label="Сохранить"
+                onClick={() => {
+                  onSaveImage(previewCanvasRef.current, completedCrop);
+                }}
+              />
               <Button
                 mode="secondary"
                 label="Отменить"
