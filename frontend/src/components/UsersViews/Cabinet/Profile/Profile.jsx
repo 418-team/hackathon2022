@@ -88,11 +88,12 @@ function ProfileImage({ background }) {
   const imgRef = useRef(null);
   const buttonRef = useRef(null);
   const previewCanvasRef = useRef(null);
-  const [crop, setCrop] = useState({ unit: "%", width: 30, aspect: 1 });
+  const [crop, setCrop] = useState({ unit: "%", width: 40, aspect: 1, x: 25, y: 25 });
   const [completedCrop, setCompletedCrop] = useState(null);
   const { getRootProps, getInputProps, open } = useDropzone({
     noClick: true,
     noKeyboard: true,
+    accept: 'image/*',
     onDrop: (acceptedFiles) => {
       setUpImg(() => {
         const reader = new FileReader();
