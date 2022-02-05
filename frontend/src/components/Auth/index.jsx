@@ -24,48 +24,40 @@ function Auth() {
     setError({ data, global });
   };
 
-  const validateInputs = () => {
-    return Object.keys(params).every((item) => params[item].length > 0);
-  }
-
   const submit = () => {
     if (authView === "login") {
-      if (validateInputs()) {
-        auth(params.email, params.password)
-          .then((r) => {
-            localStorage.setItem("refresh_token", r.data.refresh_token);
-            localStorage.setItem("access_token", r.data.access_token);
-            localStorage.setItem(
-              "is_admin",
-              r.data.user.scopes.includes("admin").toString()
-            );
-            history.push("/");
-          })
-          .catch((err) => {
-            console.error("auth", err?.response.data);
-            if (err?.response.data?.error === "incorrect_login_or_password") {
-              setErrorItem(err?.response.data?.message, true);
-            }
-          });
-      } else {
-        setErrorItem(params.email.length > 0 ? "password" : "email");
-      }
+      auth(params.email, params.password)
+        .then((r) => {
+          localStorage.setItem("refresh_token", r.data.refresh_token);
+          localStorage.setItem("access_token", r.data.access_token);
+          localStorage.setItem(
+            "is_admin",
+            r.data.user.scopes.includes("admin").toString()
+          );
+          history.push("/");
+        })
+        .catch((err) => {
+          console.error("auth err:", err);
+          if (Array.isArray(err)) {
+            setErrorItem(err);
+          } else if (err?.response && err?.response.data?.error === "incorrect_login_or_password") {
+            setErrorItem(err?.response.data?.message, true);
+          }
+        });
     } else {
-      console.log('reg')
-      if (validateInputs()) {
-        registration(params)
-          .then(() => {
-            setAuthView("login");
-          })
-          .catch((err) => {
-            if (err?.response.data?.error === "already_exists") {
-              setErrorItem(err?.response.data?.message, true);
-            }
-          });
-      } else {
-        const invalidInputs = Object.keys(params).filter((item) => params[item].length === 0 && item);
-        setErrorItem(invalidInputs.length === Object.keys(params).length ? 'all' : invalidInputs[0]);
-      }
+      console.log("reg");
+      registration(params)
+        .then(() => {
+          setAuthView("login");
+        })
+        .catch((err) => {
+          console.error("reg err:", err);
+          if (Array.isArray(err)) {
+            setErrorItem(err);
+          } else if (err?.response && err?.response.data?.error === "already_exists") {
+            setErrorItem(err?.response.data?.message, true);
+          }
+        });
     }
   };
 
@@ -171,7 +163,7 @@ function Auth() {
           </div>
         </div>
         <div className="btn_container">
-          <PopUp title="Войти" fields={loginFields} open={authView === "login"}>
+          <PopUp title="Войти" fields={loginFields} open={authView === "login"} error={error}>
             <Button
               label="Войти"
               mode="secondary"
@@ -182,6 +174,7 @@ function Auth() {
             title="Регистрация"
             fields={registrationFields}
             open={authView === "registration"}
+            error={error}
           >
             <Button
               label="Присоединиться"

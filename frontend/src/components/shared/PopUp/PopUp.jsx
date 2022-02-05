@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 
-function PopUp({ fields, title, children, open }) {
+function PopUp({ fields, title, children, open, error }) {
   const inputs = fields.filter((f) => f.type === "input");
   const buttons = fields.filter((f) => f.type === "button");
   const childrenRef = useRef(null);
@@ -19,6 +19,7 @@ function PopUp({ fields, title, children, open }) {
           bottom={bottom}
           inputs={inputs}
           buttons={buttons}
+          error={error}
         />
       )}
       <div ref={childrenRef}>{children}</div>
@@ -26,9 +27,7 @@ function PopUp({ fields, title, children, open }) {
   );
 }
 
-function PopUpWindow({ bottom, left, title, inputs, buttons }) {
-  const error = useRef(null);
-
+function PopUpWindow({ bottom, left, title, inputs, buttons, error }) {
   const onChange = (input, e) => {
     if (input.key) {
       input.onChange(input.key, e.target.value);
@@ -41,31 +40,25 @@ function PopUpWindow({ bottom, left, title, inputs, buttons }) {
     <div className="pop_up_form" style={{ bottom, left }}>
       <h3>{title}</h3>
       <hr />
-      {error.current?.data && error.current?.global && (
+      {error?.data && error?.global && (
         <span className="pop_up_form__text_error">
-          {error.current?.data || "Ошибка"}
+          {error?.data || "Ошибка"}
         </span>
       )}
-      <div>
-        {inputs.map((input) => {
-          if (input?.error){
-             error.current = input.error
-             console.log('input.error', input.error)
-          };
-          return (
-            <Input
-              placeholder={input.placeholder}
-              type={input.button_type}
-              onChange={(e) => onChange(input, e)}
-              value={input.value}
-              mode={
-                input?.error?.global || input?.error?.data === input.key || input?.error?.data === 'all'
-                  ? "error"
-                  : "secondary"
-              }
-            />
-          );
-        })}
+      <form>
+        {inputs.map((input) => (
+          <Input
+            placeholder={input.placeholder}
+            type={input.button_type}
+            onChange={(e) => onChange(input, e)}
+            value={input.value}
+            mode={
+              input?.error?.global || error?.data?.includes(input.key)
+                ? " error"
+                : " secondary"
+            }
+          />
+        ))}
         <div className="btn_container">
           {buttons.map((button) => (
             <Button
@@ -75,7 +68,7 @@ function PopUpWindow({ bottom, left, title, inputs, buttons }) {
             />
           ))}
         </div>
-      </div>
+      </form>
     </div>
   );
 }

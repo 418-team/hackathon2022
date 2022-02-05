@@ -2,20 +2,35 @@ import axios from "axios";
 
 // OAuth
 export async function auth(username, password) {
+  const data = {username, password};
+  const invalidInputs = Object.keys(data).filter((key) => !data[key])
+  if (invalidInputs.length > 0) {
+    return Promise.reject([...invalidInputs]);
+  }
+
   const result = await axios.post(
     "oauth/authorize",
-    JSON.stringify({ username, password })
+    JSON.stringify(data)
   );
   return result;
 }
+
 export async function registration(body) {
-  const [first_name, last_name] = body.name.split(" ");
-  const data = {
+  let data = {
     email: body.email,
     password: body.password,
-    first_name,
-    last_name,
+    name: body.name,
   };
+
+  const invalidInputs = Object.keys(data).filter((key) => !data[key])
+  if (invalidInputs.length > 0) {
+    return Promise.reject([...invalidInputs]);
+  }
+
+  const [first_name, last_name] = body.name.split(" ");
+  data = {...data, first_name: first_name || '', last_name: last_name || ''}
+  delete data.name
+  
   const result = await axios.post("oauth/registration", JSON.stringify(data));
   return result;
 }
