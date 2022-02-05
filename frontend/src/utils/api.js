@@ -1,11 +1,19 @@
 import axios from "axios";
 
+const dropRequest = (value) => {
+  return Promise.reject(value);
+}
+
+const validateValue = (data, key, value) => {
+  return !data[key] || (key === value && !data[key].match(/.+@.+/))
+}
+
 // OAuth
 export async function auth(username, password) {
   const data = { username, password };
-  const invalidInputs = Object.keys(data).filter((key) => !data[key]);
+  const invalidInputs = Object.keys(data).filter((key) => validateValue(data, key, 'username'));
   if (invalidInputs.length > 0) {
-    return Promise.reject([...invalidInputs]);
+    return dropRequest([...invalidInputs]);
   }
 
   const result = await axios.post("oauth/authorize", JSON.stringify(data));
@@ -19,12 +27,13 @@ export async function registration(body) {
     name: body.name,
   };
 
-  const invalidInputs = Object.keys(data).filter((key) => !data[key]);
+  const invalidInputs = Object.keys(data).filter((key) => validateValue(data, key, 'email'));
   if (invalidInputs.length > 0) {
-    return Promise.reject([...invalidInputs]);
+    return dropRequest([...invalidInputs]);
   }
 
   const [first_name, last_name] = body.name.split(" ");
+  if (!first_name || !last_name) return dropRequest(['name'])
   data = { ...data, first_name: first_name || "", last_name: last_name || "" };
   delete data.name;
 
